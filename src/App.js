@@ -1,71 +1,89 @@
 import React, { Component } from 'react';
 import './App.css';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
 const GIVEWELL_IMPACT = {
   'Against Malaria Foundation': {
     livesSavedPerDollarPerYear: 0.0003163024794,
-    recommendedDonation: 0.75
+    donationRatio: 0.75
   },
   'Deworm the World': {
     livesSavedPerDollarPerYear: 0.001109882262,
-    recommendedDonation: 0
+    donationRatio: 0
   },
   'Schistosomiasis Control Initiative': {
     livesSavedPerDollarPerYear: 0.0007285818717,
-    recommendedDonation: 0.25
+    donationRatio: 0.25
   },
   GiveDirectly: {
     livesSavedPerDollarPerYear: 0.0001434415929,
-    recommendedDonation: 0
+    donationRatio: 0
   },
   Sightsavers: {
     livesSavedPerDollarPerYear: 0.0004339612324,
-    recommendedDonation: 0
+    donationRatio: 0
   },
   'Malaria Consortium': {
     livesSavedPerDollarPerYear: 0.0003099860857,
-    recommendedDonation: 0
+    donationRatio: 0
   }
+};
+
+const sum = list => {
+  const add = (x, y) => x + y;
+  return list.reduce(add, 0);
 };
 
 const humanize = x => {
   return x.toFixed(2).replace(/\.?0*$/, '');
 };
 
-const calculateDonations = yearlyTotalBaseAmount => {
-  return Object.entries(GIVEWELL_IMPACT)
-    .map(charityName_info => {
-      const charityName = charityName_info[0];
-      const info = charityName_info[1];
-      const yourDonation = yearlyTotalBaseAmount * info.recommendedDonation;
-      return {
-        charityName,
-        yourDonation,
-        livesSaved: yourDonation * info.livesSavedPerDollarPerYear
-      };
-    })
-    .filter(({ charityName, yourDonation, livesSaved }) => yourDonation > 0);
+const mapCharities = f => {
+  return Object.entries(GIVEWELL_IMPACT).map(charityName_info => {
+    const charityName = charityName_info[0];
+    const info = charityName_info[1];
+    return f(charityName, info);
+  });
 };
 
-const ImpactTable = ({ donations }) => {
-  return (
-    <table>
-      {donations.map(({ charityName, yourDonation, livesSaved }) => {
-        return (
-          <tr>
-            <td>{charityName}</td>
-            <td>${yourDonation}</td>
-            <td>{humanize(livesSaved)}</td>
-          </tr>
-        );
-      })}
-    </table>
+const repeatMultiplier = repeat => {
+  switch (repeat) {
+    case 'monthly':
+      return 12;
+    case 'quarterly':
+      return 4;
+    default:
+      return 1;
+
+  }
+};
+
+const calculateDonations = baseAmount => {
+  return mapCharities((charityName, info) => {
+    const yourDonation = baseAmount * info.donationRatio;
+    return {
+      charityName,
+      donationRatio: info.donationRatio,
+      yourDonation
+    };
+  }).filter(
+    ({ charityName, donationRatio, yourDonation }) => donationRatio > 0
+  );
+};
+
+const calculateLivesSavedInYears = (baseAmountYearly, numberOfYears) => {
+  return sum(
+    mapCharities((charityName, info) => {
+      const yourDonation = baseAmountYearly * info.donationRatio;
+      return yourDonation * info.livesSavedPerDollarPerYear * numberOfYears;
+    })
   );
 };
 
 class App extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       baseAmount: null,
       supportGiveWell: false,
@@ -73,7 +91,6 @@ class App extends Component {
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleInputChange(event) {
@@ -86,113 +103,172 @@ class App extends Component {
     });
   }
 
-  handleSubmit(event) {
-    console.log(this.state);
-    event.preventDefault();
+  passState(ChildComponent, match) {
+    return (
+      <ChildComponent
+        state={this.state}
+        handleInputChange={this.handleInputChange}
+        {...match}
+      />
+    );
   }
 
   render() {
-    const baseAmount = parseInt(this.state.baseAmount || '0', 10);
-    const supportGiveWell = this.state.supportGiveWell;
-    const giveWellSupport = supportGiveWell ? 0.1 * baseAmount : 0;
-    console.log(this.state);
-    const total = baseAmount + giveWellSupport;
-
-    const interval = this.state.interval;
-
-    var multiplier = 1;
-    if (this.state.interval === 'monthly') {
-      multiplier = 12;
-    } else if (this.state.interval === 'quarterly') {
-      multiplier = 4;
-    }
-
-    const yearlyTotal = total * multiplier;
-    const yearlyTotalBaseAmount = baseAmount * multiplier;
-
-    const add = (a, b) => a + b;
-    const donations = calculateDonations(yearlyTotalBaseAmount);
-    const livesSaved = donations
-      .map(donation => donation.livesSaved)
-      .reduce(add, 0);
-
     return (
-      <div className="App">
-        <div className="">
-          <h2>Donate to GiveWell</h2>
+      <Router>
+        <div id="container">
+          <Switch>
+            <Route exact path="/" component={IntroPage} />
+            <Route
+              path="/donate/step/:step"
+              render={this.passState.bind(this, DonateFormPage)}
+            />
+          </Switch>
         </div>
-        <div className="body">
-          <form onSubmit={this.handleSubmit}>
-            <fieldset>
-              <div>
-                <label>How much do you want to donate?</label>
-                <span>$</span>
-                <input
-                  name="baseAmount"
-                  type="text"
-                  onChange={this.handleInputChange}
-                />
-              </div>
-              <div>
-                <input
-                  type="checkbox"
-                  name="supportGiveWell"
-                  checked={supportGiveWell}
-                  onChange={this.handleInputChange}
-                />
-                <label>Add 10% to help fund GiveWells operations?</label>
-              </div>
-              <div>
-                <label>Make this donation</label>
-                <ul>
-                  <li>
-                    <input
-                      type="radio"
-                      name="interval"
-                      value="once"
-                      checked={interval === 'once'}
-                      onChange={this.handleInputChange}
-                    />
-                    <label>Once</label>
-                  </li>
-                  <li>
-                    <input
-                      type="radio"
-                      name="interval"
-                      value="monthly"
-                      checked={interval === 'monthly'}
-                      onChange={this.handleInputChange}
-                    />
-                    <label>Every month</label>
-                  </li>
-                  <li>
-                    <input
-                      type="radio"
-                      name="interval"
-                      value="quarterly"
-                      checked={interval === 'quarterly'}
-                      onChange={this.handleInputChange}
-                    />
-                    <label>Every quarter</label>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <div>
-                  Your donation of $
-                  {yearlyTotal}
-                  {' '}per year will save{' '}
-                  {humanize(livesSaved)}
-                  {' '}lives!
-                </div>
-                <ImpactTable donations={donations} />
-              </div>
-            </fieldset>
-          </form>
-        </div>
-      </div>
+      </Router>
     );
   }
 }
+
+const IntroPage = () => (
+  <div>
+    <h1>Make your donations reach further</h1>
+    <p>
+      <a href="https://givewell.org">GiveWell</a>
+      {' '}
+      is a world leading nonprofit dedicated to finding outstanding giving opportunities through in-depth analysis.
+    </p>
+    <p>Maximize the impact of your charity donations with GiveWells help.</p>
+    <p><Link to="/donate/step/1">Count me in!</Link></p>
+  </div>
+);
+
+const Progress = ({ step, totalSteps }) => (
+  <div>Step {step} of {totalSteps}</div>
+);
+
+const DonateFormPage = ({ match, state, handleInputChange }) => {
+  const totalSteps = 3;
+  switch (match.params.step) {
+    case '1':
+      return (
+        <div>
+          <Progress step="1" totalSteps={totalSteps} />
+          <DonateFormPage1
+            baseAmount={state.baseAmount}
+            handleInputChange={handleInputChange}
+          />
+        </div>
+      );
+    case '2':
+      return (
+        <div>
+          <Progress step="2" totalSteps={totalSteps} />
+          <DonateFormPage2
+            baseAmount={state.baseAmount}
+            handleInputChange={handleInputChange}
+          />
+        </div>
+      );
+  }
+};
+
+const DonateFormPage1 = ({ baseAmount, handleInputChange }) => {
+  const donations = calculateDonations(baseAmount);
+
+  const amountAsStringIfAny = donation => donation ? donation : '--';
+  return (
+    <div>
+      <form>
+        <fieldset>
+          <div>
+            <label>How much do you want to donate monthly?</label>
+            <span>$</span>
+            <input
+              name="baseAmount"
+              type="text"
+              value={baseAmount}
+              onChange={handleInputChange}
+            />
+            <Link to="/donate/step/2">Next</Link>
+          </div>
+          <div>
+            <p>
+              This is how your donation will be allocated
+            </p>
+            <table>
+              <tbody>
+                {donations.map((
+                  { charityName, donationRatio, yourDonation }
+                ) => {
+                  return (
+                    <tr key={charityName}>
+                      <td>{charityName}</td>
+                      <td>{donationRatio * 100}%</td>
+                      <td>${amountAsStringIfAny(yourDonation)}</td>
+                    </tr>
+                  );
+                })}
+                <tr>
+                  <td />
+                  <td>100%</td>
+                  <td>${amountAsStringIfAny(baseAmount)}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  );
+};
+
+const DonateFormPage2 = ({ baseAmount, handleInputChange }) => {
+  const numberOfYears = 10;
+  const baseAmountYearly = baseAmount * repeatMultiplier('monthly');
+  const baseAmountNumberOfYears = baseAmountYearly * numberOfYears;
+  const livesSavedInNumberOfYears = humanize(
+    calculateLivesSavedInYears(baseAmountYearly, numberOfYears)
+  );
+  return (
+    <div>
+      <div>
+        <label>
+          Your monthly donation of $
+          {baseAmount}
+          {' '} will save{' '}
+          {livesSavedInNumberOfYears}
+          {' '} lives in the next{' '}
+          {numberOfYears} years
+        </label>
+      </div>
+      <div>
+        <table>
+          <tbody>
+            <tr>
+              <td>Monthly</td>
+              <td>${baseAmount}</td>
+            </tr>
+            <tr>
+              <td>Yearly</td>
+              <td>${baseAmountYearly}</td>
+            </tr>
+            <tr>
+              <td>{numberOfYears} years</td>
+              <td>${baseAmountNumberOfYears}</td>
+            </tr>
+            <tr>
+              <td>Lives saved</td>
+              <td>{livesSavedInNumberOfYears}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <Link to="/donate/step/3">Checkout</Link>
+      </div>
+    </div>
+  );
+};
 
 export default App;

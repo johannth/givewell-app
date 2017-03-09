@@ -1,6 +1,6 @@
 # GiveWell Mobile Donations
 
-This is a proof of concept how GiveWell could implement a mobile friendly donation flow.
+This is a proof of concept how GiveWell could implement a mobile friendly donation flow. Not complete and not associated with GiveWell in any way.
 
 ## Development
 
