@@ -11,7 +11,7 @@
 .IntroPage__header {
   display: flex;
   width: 100%;
-  font-family: Helvetica;
+  font-family: AvenirLTStd-Black, arial, sans-serif;
   font-size: 32px;
   justify-content: center;
   text-align: center;
@@ -38,7 +38,8 @@
   margin: 10px;
   width: 75%;
   height: 10vh;
-  background-color: #118AB2;
+  background-color: #f88920;
+  text-transform: uppercase;
   border-radius: 4px;
   justify-content: center;
   align-items: center;

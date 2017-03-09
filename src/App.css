@@ -6,11 +6,11 @@
 
 .App__navBar {
   display: flex;
-  background-color: #06D6A0;
+  background-color: #669bb5;
   height: 7vh;
   width: 100%;
   color: white;
-  font-family: Helvetica;
+  font-family: AvenirLTStd-Black, arial, sans-serif;
   justify-content: center;
   align-items: center;
 }
@@ -50,7 +50,7 @@
   padding: 0px 0px 0px 16px;
   font-size: 16px;
   line-height: 19px;
-  font-family: $typeface-default;
+  font-family: AvenirLTStd-Black, arial, sans-serif;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
 }
@@ -65,7 +65,8 @@
   margin: 10px;
   width: 75%;
   height: 10vh;
-  background-color: #118AB2;
+  background-color: #f88920;
+  font-family: AvenirLTStd-Medium, arial, sans-serif;
   border-radius: 4px;
   justify-content: center;
   align-items: center;

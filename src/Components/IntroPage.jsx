@@ -12,7 +12,7 @@ const IntroPage = () => {
       <div className="IntroPage__content">
         <div>
           <a href="https://givewell.org">GiveWell</a> is a world leading nonprofit dedicated to finding outstanding giving opportunities through in-depth analysis.
-        </div>
+        </div>  
         <div>
           Maximize the impact of your charity donations with GiveWells help.
         </div>
