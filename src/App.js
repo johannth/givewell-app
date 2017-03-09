@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import './App.css';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+
+import IntroPage from './Components/IntroPage';
+
+import './App.css';
 
 const GIVEWELL_IMPACT = {
   'Against Malaria Foundation': {
@@ -116,7 +119,8 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div id="container">
+        <div className="App__Container">
+          <div className="App__navBar">GiveWell Mobile</div>
           <Switch>
             <Route exact path="/" component={IntroPage} />
             <Route
@@ -129,19 +133,6 @@ class App extends Component {
     );
   }
 }
-
-const IntroPage = () => (
-  <div>
-    <h1>Make your donations reach further</h1>
-    <p>
-      <a href="https://givewell.org">GiveWell</a>
-      {' '}
-      is a world leading nonprofit dedicated to finding outstanding giving opportunities through in-depth analysis.
-    </p>
-    <p>Maximize the impact of your charity donations with GiveWells help.</p>
-    <p><Link to="/donate/step/1">Count me in!</Link></p>
-  </div>
-);
 
 const Progress = ({ step, totalSteps }) => (
   <div>Step {step} of {totalSteps}</div>
@@ -178,19 +169,21 @@ const DonateFormPage1 = ({ baseAmount, handleInputChange }) => {
 
   const amountAsStringIfAny = donation => donation ? donation : '--';
   return (
-    <div>
-      <form>
-        <fieldset>
-          <div>
+    <div className="DonateFormPage1__wrapper">
+        <div className="DonateFormPage1__donationWrapper">
             <label>How much do you want to donate monthly?</label>
-            <span>$</span>
-            <input
-              name="baseAmount"
-              type="text"
-              value={baseAmount}
-              onChange={handleInputChange}
-            />
-            <Link to="/donate/step/2">Next</Link>
+              <div className="DonateFormPage1__inputWrapper"> $
+                <input
+                  name="baseAmount"
+                  type="text"
+                  value={baseAmount}
+                  onChange={handleInputChange}
+                  className="DonateFormPage1__input"
+                />
+              </div>
+            <div className="DonateFormPage1__CTA">
+              <Link to="/donate/step/2">Next</Link>
+            </div>
           </div>
           <div>
             <p>
@@ -217,8 +210,6 @@ const DonateFormPage1 = ({ baseAmount, handleInputChange }) => {
               </tbody>
             </table>
           </div>
-        </fieldset>
-      </form>
     </div>
   );
 };
