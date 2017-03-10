@@ -15,6 +15,65 @@
   align-items: center;
 }
 
+/* Intro Page*/
+
+.IntroPage__wrapper {
+  display: flex;
+  width: 95%;
+  flex-direction: column;
+  align-self: center;
+  justify-content: space-around;
+  align-items: center;
+  height: 93vh;
+}
+
+.IntroPage__header {
+  display: flex;
+  width: 100%;
+  font-family: AvenirLTStd-Black, arial, sans-serif;
+  font-size: 32px;
+  justify-content: center;
+  text-align: center;
+}
+
+.IntroPage__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 90%;
+  font-size: 18px;
+  height: 40vh;
+}
+
+.IntroPage__content > div {
+  font-size: 20px;
+  text-align: center;
+  padding: 10px;
+}
+
+.IntroPage__CTA {
+  color: white;
+  display: flex;
+  margin: 10px;
+  width: 75%;
+  height: 10vh;
+  background-color: #f88920;
+  text-transform: uppercase;
+  border-radius: 4px;
+  justify-content: center;
+  align-items: center;
+}
+
+.IntroPage__CTA > a {
+  text-decoration: none;
+}
+
+.IntroPage__CTA > a:visited {
+  color: white;
+}
+
+/* DonateFormPage1 */
+
 .DonateFormPage1__wrapper {
   display: flex;
   width: 100vw;
@@ -51,8 +110,7 @@
   font-size: 16px;
   line-height: 19px;
   font-family: AvenirLTStd-Black, arial, sans-serif;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .DonateFormPage1__input:focus {
@@ -75,9 +133,9 @@
 }
 
 .DonateFormPage1__CTA > a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .DonateFormPage1__CTA > a:visited {
-    color: white;
+  color: white;
 }

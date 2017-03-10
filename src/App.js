@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
-import IntroPage from './Components/IntroPage';
-
 import './App.css';
 
 const GIVEWELL_IMPACT = {
@@ -134,6 +132,29 @@ class App extends Component {
   }
 }
 
+const IntroPage = () => {
+  return (
+    <div className="IntroPage__wrapper">
+      <div className="IntroPage__header">
+        Make your donations reach further
+      </div>
+      <div className="IntroPage__content">
+        <div>
+          <a href="https://givewell.org">GiveWell</a>
+          {' '}
+          is a world leading nonprofit dedicated to finding outstanding giving opportunities through in-depth analysis.
+        </div>
+        <div>
+          Maximize the impact of your charity donations with GiveWells help.
+        </div>
+      </div>
+      <div className="IntroPage__CTA">
+        <Link to="/donate/step/1">Count me in!</Link>
+      </div>
+    </div>
+  );
+};
+
 const Progress = ({ step, totalSteps }) => (
   <div>Step {step} of {totalSteps}</div>
 );
@@ -170,46 +191,45 @@ const DonateFormPage1 = ({ baseAmount, handleInputChange }) => {
   const amountAsStringIfAny = donation => donation ? donation : '--';
   return (
     <div className="DonateFormPage1__wrapper">
-        <div className="DonateFormPage1__donationWrapper">
-            <label>How much do you want to donate monthly?</label>
-              <div className="DonateFormPage1__inputWrapper"> $
-                <input
-                  name="baseAmount"
-                  type="text"
-                  value={baseAmount}
-                  onChange={handleInputChange}
-                  className="DonateFormPage1__input"
-                />
-              </div>
-            <div className="DonateFormPage1__CTA">
-              <Link to="/donate/step/2">Next</Link>
-            </div>
-          </div>
-          <div>
-            <p>
-              This is how your donation will be allocated
-            </p>
-            <table>
-              <tbody>
-                {donations.map((
-                  { charityName, donationRatio, yourDonation }
-                ) => {
-                  return (
-                    <tr key={charityName}>
-                      <td>{charityName}</td>
-                      <td>{donationRatio * 100}%</td>
-                      <td>${amountAsStringIfAny(yourDonation)}</td>
-                    </tr>
-                  );
-                })}
-                <tr>
-                  <td />
-                  <td>100%</td>
-                  <td>${amountAsStringIfAny(baseAmount)}</td>
+      <div className="DonateFormPage1__donationWrapper">
+        <label>How much do you want to donate monthly?</label>
+        <div className="DonateFormPage1__inputWrapper">
+          {' '}$
+          <input
+            name="baseAmount"
+            type="text"
+            value={baseAmount}
+            onChange={handleInputChange}
+            className="DonateFormPage1__input"
+          />
+        </div>
+        <div className="DonateFormPage1__CTA">
+          <Link to="/donate/step/2">Next</Link>
+        </div>
+      </div>
+      <div>
+        <p>
+          This is how your donation will be allocated
+        </p>
+        <table>
+          <tbody>
+            {donations.map(({ charityName, donationRatio, yourDonation }) => {
+              return (
+                <tr key={charityName}>
+                  <td>{charityName}</td>
+                  <td>{donationRatio * 100}%</td>
+                  <td>${amountAsStringIfAny(yourDonation)}</td>
                 </tr>
-              </tbody>
-            </table>
-          </div>
+              );
+            })}
+            <tr>
+              <td />
+              <td>100%</td>
+              <td>${amountAsStringIfAny(baseAmount)}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
