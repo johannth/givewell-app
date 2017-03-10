@@ -81,57 +81,6 @@ const calculateLivesSavedInYears = (baseAmountYearly, numberOfYears) => {
   );
 };
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      baseAmount: null,
-      supportGiveWell: false,
-      interval: 'once'
-    };
-
-    this.handleInputChange = this.handleInputChange.bind(this);
-  }
-
-  handleInputChange(event) {
-    const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name;
-
-    this.setState({
-      [name]: value
-    });
-  }
-
-  passState(ChildComponent, match) {
-    return (
-      <ChildComponent
-        state={this.state}
-        handleInputChange={this.handleInputChange}
-        {...match}
-      />
-    );
-  }
-
-  render() {
-    return (
-      <Router>
-        <div className="App__Container">
-          <div className="App__navBar">GiveWell Mobile</div>
-          <Switch>
-            <Route exact path="/" component={IntroPage} />
-            <Route
-              path="/donate/step/:step"
-              render={this.passState.bind(this, DonateFormPage)}
-            />
-          </Switch>
-        </div>
-      </Router>
-    );
-  }
-}
-
 const IntroPage = () => {
   return (
     <div className="IntroPage__wrapper">
@@ -140,9 +89,7 @@ const IntroPage = () => {
       </div>
       <div className="IntroPage__content">
         <div>
-          <a href="https://givewell.org">GiveWell</a>
-          {' '}
-          is a world leading nonprofit dedicated to finding outstanding giving opportunities through in-depth analysis.
+          <a href="https://givewell.org">GiveWell</a> is a world leading nonprofit dedicated to finding outstanding giving opportunities through in-depth analysis.
         </div>
         <div>
           Maximize the impact of your charity donations with GiveWells help.
@@ -155,9 +102,27 @@ const IntroPage = () => {
   );
 };
 
-const Progress = ({ step, totalSteps }) => (
-  <div>Step {step} of {totalSteps}</div>
-);
+const Progress = ({ step, totalSteps }) => {
+
+  const percentageCompleted = step / totalSteps * 100;
+  const progressBarStyle = {
+    height: '100%',
+    width: percentageCompleted + '%',
+    backgroundColor: '#f88920',
+    borderRadius: '5px',
+  };
+
+  return (
+    <div className="ProgressBar__wrapper">
+      <div className="ProgressBar__background">
+        <div style={progressBarStyle}></div>
+      </div>
+      <div className="ProgressBar__text">
+        Step {step} of {totalSteps}
+      </div>
+    </div>
+  );
+}
 
 const DonateFormPage = ({ match, state, handleInputChange }) => {
   const totalSteps = 3;
@@ -242,7 +207,7 @@ const DonateFormPage2 = ({ baseAmount, handleInputChange }) => {
     calculateLivesSavedInYears(baseAmountYearly, numberOfYears)
   );
   return (
-    <div>
+    <div className="DonateFormPage2__wrapper">
       <div>
         <label>
           Your monthly donation of $
@@ -275,11 +240,64 @@ const DonateFormPage2 = ({ baseAmount, handleInputChange }) => {
           </tbody>
         </table>
       </div>
-      <div>
+      <div className="DonateFormPage2__CTA">
         <Link to="/donate/step/3">Checkout</Link>
       </div>
     </div>
   );
 };
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      baseAmount: null,
+      supportGiveWell: false,
+      interval: 'once'
+    };
+
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  handleInputChange(event) {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    });
+  }
+
+  passState(ChildComponent, match) {
+    return (
+      <ChildComponent
+        state={this.state}
+        handleInputChange={this.handleInputChange}
+        {...match}
+      />
+    );
+  }
+
+  render() {
+    return (
+      <Router>
+        <div className="App__Container">
+          <div className="App__navBar">GiveWell Mobile</div>
+          <div className="App__viewportContainer">
+            <Switch>
+              <Route exact path="/" component={IntroPage} />
+              <Route
+                path="/donate/step/:step"
+                render={this.passState.bind(this, DonateFormPage)}
+              />
+            </Switch>
+          </div>
+        </div>
+      </Router>
+    );
+  }
+}
 
 export default App;
