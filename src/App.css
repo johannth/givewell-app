@@ -1,6 +1,7 @@
 .App__Container {
   width: 100vw;
   display: flex;
+  background-color: skyblue;
   flex-direction: column;
   align-items: center;
   font-family: AvenirLTStd-Black, arial, sans-serif;
