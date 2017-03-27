@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom';
+import classNames from 'classnames';
 
 import './App.css';
 import logo from '../public/gwlogo.png';
@@ -41,9 +42,8 @@ const humanize = x => {
 };
 
 const mapCharities = f => {
-  return Object.entries(GIVEWELL_IMPACT).map(charityName_info => {
-    const charityName = charityName_info[0];
-    const info = charityName_info[1];
+  return Object.keys(GIVEWELL_IMPACT).map(charityName => {
+    const info = GIVEWELL_IMPACT[charityName];
     return f(charityName, info);
   });
 };
@@ -56,7 +56,6 @@ const repeatMultiplier = repeat => {
       return 4;
     default:
       return 1;
-
   }
 };
 
@@ -96,9 +95,9 @@ const IntroPage = () => {
           Maximize the impact of your charity donations with GiveWells help.
         </div>
       </div>
-      <div className="IntroPage__CTA">
-        <Link to="/donate/step/1">Count me in!</Link>
-      </div>
+      <NextStepButton to="/donate/step/1">
+        Count me in
+      </NextStepButton>
     </div>
   );
 };
@@ -122,83 +121,56 @@ const Progress = ({step, totalSteps}) => {
 };
 
 const DonateFormPage = ({match, state, handleInputChange}) => {
-  const totalSteps = 3;
-  switch (match.params.step) {
-    case '1':
-      return (
-        <div>
-          <Progress step="1" totalSteps={totalSteps} />
-          <DonateFormPage1
-            baseAmount={state.baseAmount}
-            handleInputChange={handleInputChange}
-          />
-        </div>
-      );
-    case '2':
-      return (
-        <div>
-          <Progress step="2" totalSteps={totalSteps} />
-          <DonateFormPage2
-            baseAmount={state.baseAmount}
-            handleInputChange={handleInputChange}
-          />
-        </div>
-      );
-    default:
-      return <div />;
-  }
-};
+  const steps = [
+    <DonateFormPage1
+      baseAmount={state.baseAmount}
+      handleInputChange={handleInputChange}
+    />,
+    <DonateFormPage2
+      baseAmount={state.baseAmount}
+      handleInputChange={handleInputChange}
+    />,
+    <PersonalInfoPage />,
+    <PaymentPage />,
+    <SuccessPage />,
+  ];
 
-const DonateFormPage1 = ({baseAmount, handleInputChange}) => {
-  const donations = calculateDonations(baseAmount);
-
-  const amountAsStringIfAny = donation => donation ? donation : '--';
+  const step = parseInt(match.params.step, 10);
   return (
-    <div className="DonateFormPage1__wrapper">
-      <div className="DonateFormPage1__donationWrapper">
-        <label>How much do you want to donate monthly?</label>
-        <div className="DonateFormPage1__inputWrapper">
-          {' '}$
-          <input
-            name="baseAmount"
-            type="text"
-            value={baseAmount}
-            onChange={handleInputChange}
-            className="DonateFormPage1__input"
-          />
-        </div>
-        <div className="DonateFormPage1__CTA">
-          <Link to="/donate/step/2">Next</Link>
-        </div>
-      </div>
-      <div>
-        <p>
-          This is how your donation will be allocated
-        </p>
-        <table>
-          <tbody>
-            {donations.map(({charityName, donationRatio, yourDonation}) => {
-              return (
-                <tr key={charityName}>
-                  <td>{charityName}</td>
-                  <td>{donationRatio * 100}%</td>
-                  <td>${amountAsStringIfAny(yourDonation)}</td>
-                </tr>
-              );
-            })}
-            <tr>
-              <td />
-              <td>100%</td>
-              <td>${amountAsStringIfAny(baseAmount)}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <div>
+      <Progress step={step} totalSteps={steps.length} />
+      {React.cloneElement(steps[step - 1], {
+        nextStep: `/donate/step/${step + 1}`,
+      })}
     </div>
   );
 };
 
-const DonateFormPage2 = ({baseAmount, handleInputChange}) => {
+const NextStepButton = ({to, enabled = true, children}) => {
+  return (
+    <div
+      className={classNames(
+        'NextStepButton',
+        true,
+        'NextStepButton--disabled',
+        !enabled,
+      )}
+    >
+      <Link
+        to={to}
+        onClick={e => {
+          if (!enabled) {
+            e.preventDefault();
+          }
+        }}
+      >
+        {children}
+      </Link>
+    </div>
+  );
+};
+
+const LivesSavedCalculations = ({baseAmount}) => {
   const numberOfYears = 10;
   const baseAmountYearly = baseAmount * repeatMultiplier('monthly');
   const baseAmountNumberOfYears = baseAmountYearly * numberOfYears;
@@ -206,16 +178,14 @@ const DonateFormPage2 = ({baseAmount, handleInputChange}) => {
     calculateLivesSavedInYears(baseAmountYearly, numberOfYears),
   );
   return (
-    <div className="DonateFormPage2__wrapper">
+    <div>
       <div>
-        <label>
-          Your monthly donation of $
-          {baseAmount}
-          {' '} will save{' '}
-          {livesSavedInNumberOfYears}
-          {' '} lives in the next{' '}
-          {numberOfYears} years
-        </label>
+        A monthly donation of $
+        {baseAmount}
+        {' '} will save{' '}
+        {livesSavedInNumberOfYears}
+        {' '} lives in the next{' '}
+        {numberOfYears} years
       </div>
       <div>
         <table>
@@ -239,9 +209,139 @@ const DonateFormPage2 = ({baseAmount, handleInputChange}) => {
           </tbody>
         </table>
       </div>
-      <div className="DonateFormPage2__CTA">
-        <Link to="/donate/step/3">Checkout</Link>
+    </div>
+  );
+};
+
+const DonationAllocations = ({baseAmount}) => {
+  const donations = calculateDonations(baseAmount);
+
+  const amountAsStringIfAny = donation => donation || '--';
+  return (
+    <div>
+      <p>
+        This is how your donation will be allocated
+      </p>
+      <table>
+        <tbody>
+          {donations.map(({charityName, donationRatio, yourDonation}) => {
+            return (
+              <tr key={charityName}>
+                <td>{charityName}</td>
+                <td>{donationRatio * 100}%</td>
+                <td>${amountAsStringIfAny(yourDonation)}</td>
+              </tr>
+            );
+          })}
+          <tr>
+            <td />
+            <td>100%</td>
+            <td>${amountAsStringIfAny(baseAmount)}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  );
+};
+
+const DonateFormPage1 = ({nextStep, baseAmount, handleInputChange}) => {
+  return (
+    <div className="DonateFormPage1__wrapper">
+      <div className="DonateFormPage1__donationWrapper">
+        <label>How much do you want to donate monthly?</label>
+        <div className="DonateFormPage1__inputWrapper">
+          {' '}$
+          <input
+            name="baseAmount"
+            type="tel"
+            value={baseAmount}
+            onChange={handleInputChange}
+            className="DonateFormPage1__input"
+          />
+        </div>
+        {baseAmount && <LivesSavedCalculations baseAmount={baseAmount} />}
+        <NextStepButton to={nextStep} enabled={baseAmount}>
+          Next
+        </NextStepButton>
       </div>
+    </div>
+  );
+};
+
+const DonateFormPage2 = ({nextStep, baseAmount}) => {
+  return (
+    <div className="DonateFormPage2__wrapper">
+      <DonationAllocations baseAmount={baseAmount} />
+      <NextStepButton to={nextStep} enabled={true}>
+        Checkout
+      </NextStepButton>
+    </div>
+  );
+};
+
+const PersonalInfoPage = ({nextStep}) => {
+  return (
+    <div>
+      <h2>My Info</h2>
+      <div>
+        <input type="text" placeholder="First Name" />
+        <input type="text" placeholder="Last Name" />
+        <input type="email" placeholder="Email" />
+      </div>
+      <div>
+        <p>Optional information</p>
+        <input type="text" placeholder="Nationality" />
+        <input type="text" placeholder="Gender" />
+        <input type="tel" placeholder="Age" />
+      </div>
+      <NextStepButton to={nextStep}>
+        Next
+      </NextStepButton>
+    </div>
+  );
+};
+
+const PaymentPage = ({nextStep}) => {
+  return (
+    <div>
+      <h2>Payment Method</h2>
+      <div>
+        <input type="text" placeholder="Cardholder Name" />
+        <input type="tel" placeholder="Credit Card Number" />
+        <input type="text" placeholder="Nationality" />
+        <input type="text" placeholder="mm/yy" />
+        <input type="tel" placeholder="cvc" />
+      </div>
+      <div>
+        <a>PayPal</a>
+      </div>
+      <NextStepButton to={nextStep}>
+        Checkout
+      </NextStepButton>
+    </div>
+  );
+};
+
+const SuccessPage = ({nextStep}) => {
+  return (
+    <div>
+      <h2>Thanks!</h2>
+      <p>
+        You have successfully donated to GiveWell.
+        <ul>
+          <li>
+            <input type="checkbox" />
+            <label>Receive monthly GiveWell newsletter</label>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label>Receive periodice email on your impact</label>
+          </li>
+        </ul>
+      </p>
+      <NextStepButton to={nextStep}>
+        Sign me up
+      </NextStepButton>
     </div>
   );
 };
@@ -251,7 +351,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      baseAmount: null,
+      baseAmount: undefined,
       supportGiveWell: false,
       interval: 'once',
     };
@@ -292,7 +392,7 @@ class App extends Component {
       <Router basename={this.basename()}>
         <div className="App__Container">
           <div className="App__navBar">
-            <img className="App__navBar__logo" src={logo} />
+            <img className="App__navBar__logo" src={logo} alt="GiveWell" />
           </div>
           <div className="App__viewportContainer">
             <Switch>
