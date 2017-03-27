@@ -278,9 +278,17 @@ class App extends Component {
     );
   }
 
+  baseName() {
+    if (window.location.hostname.indexOf('github.io') !== -1) {
+      return 'givewell-app';
+    } else {
+      return undefined;
+    }
+  }
+
   render() {
     return (
-      <Router>
+      <Router baseName={this.baseName()}>
         <div className="App__Container">
           <div className="App__navBar" />
           <div className="App__viewportContainer">
