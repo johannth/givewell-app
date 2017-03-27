@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom';
 
 import './App.css';
+import logo from '../public/gwlogo.png';
 
 const GIVEWELL_IMPACT = {
   'Against Malaria Foundation': {
@@ -290,7 +291,9 @@ class App extends Component {
     return (
       <Router basename={this.basename()}>
         <div className="App__Container">
-          <div className="App__navBar" />
+          <div className="App__navBar">
+            <img className="App__navBar__logo" src={logo} />
+          </div>
           <div className="App__viewportContainer">
             <Switch>
               <Route exact path="/" component={IntroPage} />
