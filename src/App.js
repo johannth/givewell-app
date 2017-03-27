@@ -108,17 +108,14 @@ const Progress = ({ step, totalSteps }) => {
   const progressBarStyle = {
     height: '100%',
     width: percentageCompleted + '%',
-    backgroundColor: '#f88920',
-    borderRadius: '5px',
+    backgroundColor: '#669bb5',
+    borderRadius: '0px',
   };
 
   return (
     <div className="ProgressBar__wrapper">
       <div className="ProgressBar__background">
         <div style={progressBarStyle}></div>
-      </div>
-      <div className="ProgressBar__text">
-        Step {step} of {totalSteps}
       </div>
     </div>
   );
