@@ -392,7 +392,7 @@ class App extends Component {
       <Router basename={this.basename()}>
         <div className="App__Container">
           <div className="App__navBar">
-            <img className="App__navBar__logo" src={logo} />
+            <img className="App__navBar__logo" src={logo} alt="GiveWell" />
           </div>
           <div className="App__viewportContainer">
             <Switch>
