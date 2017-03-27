@@ -1,0 +1,19 @@
+## Customize the test machine
+machine:
+  node:
+    version: 7.4.0
+
+  environment:
+    PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin"
+
+
+dependencies:
+  override:
+    - yarn
+
+## Customize deployment commands
+deployment:
+  production:
+    branch: master
+    commands:
+      - yarn deploy
