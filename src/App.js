@@ -278,9 +278,9 @@ class App extends Component {
     );
   }
 
-  baseName() {
+  basename() {
     if (window.location.hostname.indexOf('github.io') !== -1) {
-      return 'givewell-app';
+      return '/givewell-app';
     } else {
       return undefined;
     }
@@ -288,7 +288,7 @@ class App extends Component {
 
   render() {
     return (
-      <Router baseName={this.baseName()}>
+      <Router basename={this.basename()}>
         <div className="App__Container">
           <div className="App__navBar" />
           <div className="App__viewportContainer">
