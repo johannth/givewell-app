@@ -17,6 +17,6 @@ deployment:
   production:
     branch: master
     commands:
-      - git config user.name $GIT_COMMITTER_NAME || exit 1
-      - git config user.email $GIT_COMMITTER_EMAIL || exit 1
+      - git config --global user.name $GIT_COMMITTER_NAME || exit 1
+      - git config --global user.email $GIT_COMMITTER_EMAIL || exit 1
       - yarn deploy
