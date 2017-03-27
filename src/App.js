@@ -1,33 +1,33 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import React, {Component} from 'react';
+import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom';
 
 import './App.css';
 
 const GIVEWELL_IMPACT = {
   'Against Malaria Foundation': {
     livesSavedPerDollarPerYear: 0.0003163024794,
-    donationRatio: 0.75
+    donationRatio: 0.75,
   },
   'Deworm the World': {
     livesSavedPerDollarPerYear: 0.001109882262,
-    donationRatio: 0
+    donationRatio: 0,
   },
   'Schistosomiasis Control Initiative': {
     livesSavedPerDollarPerYear: 0.0007285818717,
-    donationRatio: 0.25
+    donationRatio: 0.25,
   },
   GiveDirectly: {
     livesSavedPerDollarPerYear: 0.0001434415929,
-    donationRatio: 0
+    donationRatio: 0,
   },
   Sightsavers: {
     livesSavedPerDollarPerYear: 0.0004339612324,
-    donationRatio: 0
+    donationRatio: 0,
   },
   'Malaria Consortium': {
     livesSavedPerDollarPerYear: 0.0003099860857,
-    donationRatio: 0
-  }
+    donationRatio: 0,
+  },
 };
 
 const sum = list => {
@@ -65,11 +65,9 @@ const calculateDonations = baseAmount => {
     return {
       charityName,
       donationRatio: info.donationRatio,
-      yourDonation
+      yourDonation,
     };
-  }).filter(
-    ({ charityName, donationRatio, yourDonation }) => donationRatio > 0
-  );
+  }).filter(({charityName, donationRatio, yourDonation}) => donationRatio > 0);
 };
 
 const calculateLivesSavedInYears = (baseAmountYearly, numberOfYears) => {
@@ -77,7 +75,7 @@ const calculateLivesSavedInYears = (baseAmountYearly, numberOfYears) => {
     mapCharities((charityName, info) => {
       const yourDonation = baseAmountYearly * info.donationRatio;
       return yourDonation * info.livesSavedPerDollarPerYear * numberOfYears;
-    })
+    }),
   );
 };
 
@@ -89,7 +87,9 @@ const IntroPage = () => {
       </div>
       <div className="IntroPage__content">
         <div>
-          <a href="https://givewell.org">GiveWell</a> is a world leading nonprofit dedicated to finding outstanding giving opportunities through in-depth analysis.
+          <a href="https://givewell.org">GiveWell</a>
+          {' '}
+          is a world leading nonprofit dedicated to finding outstanding giving opportunities through in-depth analysis.
         </div>
         <div>
           Maximize the impact of your charity donations with GiveWells help.
@@ -102,8 +102,7 @@ const IntroPage = () => {
   );
 };
 
-const Progress = ({ step, totalSteps }) => {
-
+const Progress = ({step, totalSteps}) => {
   const percentageCompleted = step / totalSteps * 100;
   const progressBarStyle = {
     height: '100%',
@@ -115,13 +114,13 @@ const Progress = ({ step, totalSteps }) => {
   return (
     <div className="ProgressBar__wrapper">
       <div className="ProgressBar__background">
-        <div style={progressBarStyle}></div>
+        <div style={progressBarStyle} />
       </div>
     </div>
   );
-}
+};
 
-const DonateFormPage = ({ match, state, handleInputChange }) => {
+const DonateFormPage = ({match, state, handleInputChange}) => {
   const totalSteps = 3;
   switch (match.params.step) {
     case '1':
@@ -144,10 +143,12 @@ const DonateFormPage = ({ match, state, handleInputChange }) => {
           />
         </div>
       );
+    default:
+      return <div />;
   }
 };
 
-const DonateFormPage1 = ({ baseAmount, handleInputChange }) => {
+const DonateFormPage1 = ({baseAmount, handleInputChange}) => {
   const donations = calculateDonations(baseAmount);
 
   const amountAsStringIfAny = donation => donation ? donation : '--';
@@ -175,7 +176,7 @@ const DonateFormPage1 = ({ baseAmount, handleInputChange }) => {
         </p>
         <table>
           <tbody>
-            {donations.map(({ charityName, donationRatio, yourDonation }) => {
+            {donations.map(({charityName, donationRatio, yourDonation}) => {
               return (
                 <tr key={charityName}>
                   <td>{charityName}</td>
@@ -196,12 +197,12 @@ const DonateFormPage1 = ({ baseAmount, handleInputChange }) => {
   );
 };
 
-const DonateFormPage2 = ({ baseAmount, handleInputChange }) => {
+const DonateFormPage2 = ({baseAmount, handleInputChange}) => {
   const numberOfYears = 10;
   const baseAmountYearly = baseAmount * repeatMultiplier('monthly');
   const baseAmountNumberOfYears = baseAmountYearly * numberOfYears;
   const livesSavedInNumberOfYears = humanize(
-    calculateLivesSavedInYears(baseAmountYearly, numberOfYears)
+    calculateLivesSavedInYears(baseAmountYearly, numberOfYears),
   );
   return (
     <div className="DonateFormPage2__wrapper">
@@ -251,7 +252,7 @@ class App extends Component {
     this.state = {
       baseAmount: null,
       supportGiveWell: false,
-      interval: 'once'
+      interval: 'once',
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -263,7 +264,7 @@ class App extends Component {
     const name = target.name;
 
     this.setState({
-      [name]: value
+      [name]: value,
     });
   }
 
@@ -281,7 +282,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App__Container">
-          <div className="App__navBar"></div>
+          <div className="App__navBar" />
           <div className="App__viewportContainer">
             <Switch>
               <Route exact path="/" component={IntroPage} />
