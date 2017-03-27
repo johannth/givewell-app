@@ -284,7 +284,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App__Container">
-          <div className="App__navBar">GiveWell Mobile</div>
+          <div className="App__navBar"></div>
           <div className="App__viewportContainer">
             <Switch>
               <Route exact path="/" component={IntroPage} />
