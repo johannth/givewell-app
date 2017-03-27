@@ -1,0 +1,25 @@
+general:
+  branches:
+    ignore:
+      - gh-pages
+
+machine:
+  node:
+    version: 7.4.0
+
+  environment:
+    PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin"
+    GIT_COMMITTER_NAME: "Deploy Bot"
+    GIT_COMMITTER_EMAIL: "johann.thorvaldur+circleci@gmail.com"
+
+dependencies:
+  override:
+    - yarn
+
+deployment:
+  production:
+    branch: master
+    commands:
+      - git config --global user.name $GIT_COMMITTER_NAME || exit 1
+      - git config --global user.email $GIT_COMMITTER_EMAIL || exit 1
+      - yarn deploy
