@@ -5,7 +5,8 @@ machine:
 
   environment:
     PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin"
-
+    GIT_COMMITTER_NAME: "Deploy Bot"
+    GIT_COMMITTER_EMAIL: "johann.thorvaldur+circleci@gmail.com"
 
 dependencies:
   override:
