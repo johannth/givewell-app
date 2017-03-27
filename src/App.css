@@ -1,21 +1,28 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:100,300,400,400i,700,900');
+
+a:link {
+  text-decoration: underline;
+  color: #424242;
+}
+
 .App__Container {
   width: 100vw;
   display: flex;
-  background-color: skyblue;
   flex-direction: column;
   align-items: center;
-  font-family: AvenirLTStd-Black, arial, sans-serif;
+  font-family: 'Lato', arial, sans-serif;
+  color: #424242;
 }
 
 .App__navBar {
-  display: flex;
-  background-color: #669bb5;
+  background-image: url('../public/gwlogo.png');
+  background-position: center;
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-color: #f1f1f1;
   height: 7vh;
   width: 100vw;
-  color: white;
-  font-family: AvenirLTStd-Black, arial, sans-serif;
-  justify-content: center;
-  align-items: center;
+  padding: 30px;
 }
 
 .App__viewportContainer {
@@ -30,23 +37,16 @@
 .ProgressBar__wrapper {
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  padding-top: 20px;
 }
 
 .ProgressBar__background {
   width: 100%;
-  background-color: #FFFFFF;
+  background-color: #424242;
   height: 10px;
-  border-radius: 5px;
-  border: 1px solid #CB711B;
+  border: 0px solid #669bb5;
   box-sizing: border-box;
 }
-
-.ProgressBar__text {
-  margin-top: 10px;
-  text-transform: uppercase;
-}
-
 
 /* Intro Page*/
 
@@ -64,10 +64,12 @@
 .IntroPage__header {
   display: flex;
   width: 100%;
-  font-family: AvenirLTStd-Black, arial, sans-serif;
+  font-family: 'Lato';
+  font-weight: 700;
   font-size: 36px;
-  justify-content: center;
+  color: #424242;
   text-align: center;
+  justify-content: center;
 }
 
 .IntroPage__content {
@@ -75,7 +77,10 @@
   flex-direction: column;
   justify-content: center;
   width: 90%;
+  font-family: 'Lato';
+  font-weight: 400;
   font-size: 18px;
+  color: #424242;
   height: 40vh;
 }
 
@@ -93,9 +98,12 @@
   height: 10vh;
   background-color: #f88920;
   text-transform: uppercase;
-  border-radius: 4px;
+  letter-spacing: 1px;
   justify-content: center;
   align-items: center;
+  font-family: 'Lato';
+  font-weight: 300;
+  font-size: 20px;
 }
 
 .IntroPage__CTA > a {
@@ -143,7 +151,7 @@
   padding: 0px 0px 0px 16px;
   font-size: 16px;
   line-height: 19px;
-  font-family: AvenirLTStd-Black, arial, sans-serif;
+  font-family: 'Lato', arial, sans-serif;
   box-sizing: border-box;
 }
 
@@ -158,8 +166,8 @@
   width: 75%;
   height: 10vh;
   background-color: #f88920;
-  font-family: AvenirLTStd-Medium, arial, sans-serif;
-  border-radius: 4px;
+  font-weight: 300;
+  letter-spacing: 1px;
   justify-content: center;
   align-items: center;
   text-transform: uppercase;
@@ -193,8 +201,8 @@
   width: 75%;
   height: 10vh;
   background-color: #f88920;
-  font-family: AvenirLTStd-Medium, arial, sans-serif;
-  border-radius: 4px;
+  font-weight: 300;
+  letter-spacing: 1px;
   justify-content: center;
   align-items: center;
   align-self: flex-end;
