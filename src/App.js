@@ -7,78 +7,16 @@ import logo from '../public/gwlogo.png';
 import chart from '../public/chart.png';
 import pie from '../public/piechart.png';
 
-const GIVEWELL_IMPACT = {
-  'Against Malaria Foundation': {
-    livesSavedPerDollarPerYear: 0.0003163024794,
-    donationRatio: 0.75,
-  },
-  'Deworm the World': {
-    livesSavedPerDollarPerYear: 0.001109882262,
-    donationRatio: 0,
-  },
-  'Schistosomiasis Control Initiative': {
-    livesSavedPerDollarPerYear: 0.0007285818717,
-    donationRatio: 0.25,
-  },
-  GiveDirectly: {
-    livesSavedPerDollarPerYear: 0.0001434415929,
-    donationRatio: 0,
-  },
-  Sightsavers: {
-    livesSavedPerDollarPerYear: 0.0004339612324,
-    donationRatio: 0,
-  },
-  'Malaria Consortium': {
-    livesSavedPerDollarPerYear: 0.0003099860857,
-    donationRatio: 0,
-  },
-};
+import {
+  calculateLivesSavedInYears,
+  calculateDonationAllocationPerRepeat,
+} from './charities';
 
-const sum = list => {
-  const add = (x, y) => x + y;
-  return list.reduce(add, 0);
-};
+const NUMBER_OF_YEARS = 10;
+const DEFAULT_DONATION_REPEAT = 'monthly';
 
 const humanize = x => {
   return x.toFixed(2).replace(/\.?0*$/, '');
-};
-
-const mapCharities = f => {
-  return Object.keys(GIVEWELL_IMPACT).map(charityName => {
-    const info = GIVEWELL_IMPACT[charityName];
-    return f(charityName, info);
-  });
-};
-
-const repeatMultiplier = repeat => {
-  switch (repeat) {
-    case 'monthly':
-      return 12;
-    case 'quarterly':
-      return 4;
-    default:
-      return 1;
-  }
-};
-
-const calculateDonations = baseAmount => {
-  return mapCharities((charityName, info) => {
-    const yourDonation = baseAmount * info.donationRatio;
-    return {
-      charityName,
-      donationRatio: info.donationRatio,
-      yourDonation,
-    };
-  }).filter(({charityName, donationRatio, yourDonation}) => donationRatio > 0);
-};
-
-const calculateLivesSavedInYears = (baseAmountYearly, numberOfYears) => {
-  return sum(
-    mapCharities((charityName, info) => {
-      const yourDonation = baseAmountYearly * info.donationRatio;
-      return yourDonation * info.livesSavedPerDollarPerYear * numberOfYears;
-    }),
-  );
 };
 
 const IntroPage = () => {
@@ -174,61 +112,41 @@ const NextStepButton = ({to, enabled = true, children}) => {
 };
 
 const LivesSavedCalculations = ({baseAmount}) => {
-  const numberOfYears = 10;
-  const baseAmountYearly = baseAmount * repeatMultiplier('monthly');
-  const baseAmountNumberOfYears = baseAmountYearly * numberOfYears;
   const livesSavedInNumberOfYears = humanize(
-    calculateLivesSavedInYears(baseAmountYearly, numberOfYears),
+    calculateLivesSavedInYears(
+      NUMBER_OF_YEARS,
+      baseAmount,
+      DEFAULT_DONATION_REPEAT,
+    ),
   );
   return (
     <div>
-      <div>
-        A monthly donation of $
-        {baseAmount}
-        {' '} will save{' '}
-        {livesSavedInNumberOfYears}
-        {' '} lives in the next{' '}
-        {numberOfYears} years
-      </div>
-      <div>
-        <table>
-          <tbody>
-            <tr>
-              <td>Monthly</td>
-              <td>${baseAmount}</td>
-            </tr>
-            <tr>
-              <td>Yearly</td>
-              <td>${baseAmountYearly}</td>
-            </tr>
-            <tr>
-              <td>{numberOfYears} years</td>
-              <td>${baseAmountNumberOfYears}</td>
-            </tr>
-            <tr>
-              <td>Lives saved</td>
-              <td>{livesSavedInNumberOfYears}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      Your monthly donation of ${baseAmount}
+      {' '}
+      will save ~{livesSavedInNumberOfYears}
+      {' '}
+      lives in the next {NUMBER_OF_YEARS} years
     </div>
   );
 };
 
 const DonationAllocations = ({baseAmount}) => {
-  const donations = calculateDonations(baseAmount);
+  const donations = calculateDonationAllocationPerRepeat(baseAmount);
 
   const amountAsStringIfAny = donation => donation || '--';
   return (
     <div className="DonateFormPage2__content">
       <p>
-        This is how your donation will be allocated
+        This is how your donation will be allocated monthly:
       </p>
       <img src={pie} alt="pie chart" />
       <table>
         <tbody>
-          {donations.map(({charityName, donationRatio, yourDonation}) => {
+          {donations.map(({
+            charityName,
+            donationRatio,
+            yourDonation,
+          }) => {
             return (
               <tr key={charityName}>
                 <td>{charityName}</td>
@@ -252,9 +170,12 @@ const DonateFormPage1 = ({nextStep, baseAmount, handleInputChange}) => {
   return (
     <div className="DonateFormPage1__wrapper">
       <div className="DonateFormPage1__donationWrapper">
-        <label>How much do you want to donate monthly?</label>
+        <p>
+          We research charities to figure out how many lives each dollar will save.
+        </p>
+        <p>How much do you want to donate monthly?</p>
         <div className="DonateFormPage1__inputWrapper">
-          {' '}$
+          $
           <input
             name="baseAmount"
             type="tel"
