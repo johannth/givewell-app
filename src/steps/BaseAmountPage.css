@@ -1,0 +1,65 @@
+.DonateFormPage1__wrapper {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-self: center;
+  justify-content: space-around;
+  align-items: center;
+  height: 60vh;
+}
+
+.DonateFormPage1__donationWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+  height: 50vh;
+}
+
+.DonateFormPage1__inputWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.DonateFormPage1__input {
+  display:flex;
+  height: 7vh;
+  width: 60%;
+  border: 1px solid #DADCDE;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.05);
+  border-radius: 2px;
+  padding: 0px 0px 0px 16px;
+  font-size: 16px;
+  line-height: 19px;
+  font-family: 'Lato', arial, sans-serif;
+  box-sizing: border-box;
+}
+
+.DonateFormPage1__input:focus {
+  outline: none;
+}
+
+.DonateFormPage1__CTA {
+  color: white;
+  display: flex;
+  margin: 10px;
+  width: 75%;
+  height: 10vh;
+  background-color: #f88920;
+  font-weight: 300;
+  letter-spacing: 1px;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  font-size: 20px;
+}
+
+.DonateFormPage1__CTA > a {
+  text-decoration: none;
+}
+
+.DonateFormPage1__CTA > a:visited {
+  color: white;
+}

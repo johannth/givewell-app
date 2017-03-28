@@ -1,0 +1,29 @@
+
+
+.NextStepButton {
+  color: white;
+  display: flex;
+  margin: 10px;
+  width: 75%;
+  height: 10vh;
+  background-color: #f88920;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Lato';
+  font-weight: 300;
+  font-size: 20px;
+}
+
+.NextStepButton--disabled {
+  background-color: #EDEDED;
+}
+
+.NextStepButton > a {
+  text-decoration: none;
+}
+
+.NextStepButton > a:visited {
+  color: white;
+}
