@@ -1,0 +1,52 @@
+.DonationAllocationPage__wrapper {
+  display: flex;
+  width: 90vw;
+  max-width: 350px;
+  flex-direction: column;
+  align-self: center;
+  justify-content: space-around;
+  align-items: center;
+  height: 90vh;
+}
+
+.DonationAllocationPage__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 90vw;
+  font-family: 'Lato';
+  font-weight: 400;
+  font-size: 18px;
+  color: #424242;
+  height: 40vh;
+}
+
+.DonationAllocationPage__content > img {
+  margin: auto;
+  width: 50%;
+  height: 50%;
+}
+
+.DonationAllocationPage__CTA {
+  color: white;
+  display: flex;
+  margin: 10px;
+  width: 75%;
+  height: 10vh;
+  background-color: #f88920;
+  font-weight: 300;
+  letter-spacing: 1px;
+  justify-content: center;
+  align-items: center;
+  align-self: flex-end;
+  text-transform: uppercase;
+  font-size: 20px;
+}
+
+.DonationAllocationPage__CTA > a {
+  text-decoration: none;
+}
+
+.DonationAllocationPage__CTA > a:visited {
+  color: white;
+}
