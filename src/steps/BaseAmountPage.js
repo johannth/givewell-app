@@ -28,20 +28,20 @@ const LivesSavedCalculations = ({baseAmount}) => {
 
 const BaseAmountPage = ({nextStep, baseAmount, handleInputChange}) => {
   return (
-    <div className="DonateFormPage1__wrapper">
-      <div className="DonateFormPage1__donationWrapper">
+    <div className="BaseAmountPage__wrapper">
+      <div className="BaseAmountPage__donationWrapper">
         <p>
           We research charities to figure out how many lives each dollar will save.
         </p>
         <p>How much do you want to donate monthly?</p>
-        <div className="DonateFormPage1__inputWrapper">
+        <div className="BaseAmountPage__inputWrapper">
           $
           <input
             name="baseAmount"
             type="tel"
             value={baseAmount}
             onChange={handleInputChange}
-            className="DonateFormPage1__input"
+            className="BaseAmountPage__input"
           />
         </div>
         {baseAmount && <LivesSavedCalculations baseAmount={baseAmount} />}

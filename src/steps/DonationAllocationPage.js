@@ -10,7 +10,7 @@ const DonationAllocations = ({baseAmount}) => {
 
   const amountAsStringIfAny = donation => donation || '--';
   return (
-    <div className="DonateFormPage2__content">
+    <div className="DonationAllocationPage__content">
       <p>
         This is how your donation will be allocated monthly:
       </p>
@@ -43,7 +43,7 @@ const DonationAllocations = ({baseAmount}) => {
 
 const DonationAllocationPage = ({nextStep, baseAmount}) => {
   return (
-    <div className="DonateFormPage2__wrapper">
+    <div className="DonationAllocationPage__wrapper">
       <DonationAllocations baseAmount={baseAmount} />
       <NextStepButton to={nextStep}>
         Checkout

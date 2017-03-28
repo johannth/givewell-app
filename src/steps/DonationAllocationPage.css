@@ -1,4 +1,4 @@
-.DonateFormPage2__wrapper {
+.DonationAllocationPage__wrapper {
   display: flex;
   width: 90vw;
   max-width: 350px;
@@ -9,7 +9,7 @@
   height: 90vh;
 }
 
-.DonateFormPage2__content {
+.DonationAllocationPage__content {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -21,13 +21,13 @@
   height: 40vh;
 }
 
-.DonateFormPage2__content > img {
+.DonationAllocationPage__content > img {
   margin: auto;
   width: 50%;
   height: 50%;
 }
 
-.DonateFormPage2__CTA {
+.DonationAllocationPage__CTA {
   color: white;
   display: flex;
   margin: 10px;
@@ -43,10 +43,10 @@
   font-size: 20px;
 }
 
-.DonateFormPage2__CTA > a {
+.DonationAllocationPage__CTA > a {
   text-decoration: none;
 }
 
-.DonateFormPage2__CTA > a:visited {
+.DonationAllocationPage__CTA > a:visited {
   color: white;
 }

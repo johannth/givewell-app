@@ -1,4 +1,4 @@
-.DonateFormPage1__wrapper {
+.BaseAmountPage__wrapper {
   display: flex;
   width: 100%;
   flex-direction: column;
@@ -8,7 +8,7 @@
   height: 60vh;
 }
 
-.DonateFormPage1__donationWrapper {
+.BaseAmountPage__donationWrapper {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -17,13 +17,13 @@
   height: 50vh;
 }
 
-.DonateFormPage1__inputWrapper {
+.BaseAmountPage__inputWrapper {
   display: flex;
   align-items: center;
   justify-content: space-around;
 }
 
-.DonateFormPage1__input {
+.BaseAmountPage__input {
   display:flex;
   height: 7vh;
   width: 60%;
@@ -37,11 +37,11 @@
   box-sizing: border-box;
 }
 
-.DonateFormPage1__input:focus {
+.BaseAmountPage__input:focus {
   outline: none;
 }
 
-.DonateFormPage1__CTA {
+.BaseAmountPage__CTA {
   color: white;
   display: flex;
   margin: 10px;
@@ -56,10 +56,10 @@
   font-size: 20px;
 }
 
-.DonateFormPage1__CTA > a {
+.BaseAmountPage__CTA > a {
   text-decoration: none;
 }
 
-.DonateFormPage1__CTA > a:visited {
+.BaseAmountPage__CTA > a:visited {
   color: white;
 }
