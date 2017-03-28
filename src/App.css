@@ -201,13 +201,33 @@ a:link {
 
 .DonateFormPage2__wrapper {
   display: flex;
-  width: 100%;
+  width: 90vw;
+  max-width: 350px;
   flex-direction: column;
   align-self: center;
   justify-content: space-around;
   align-items: center;
   height: 90vh;
 }
+
+.DonateFormPage2__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 90vw;
+  font-family: 'Lato';
+  font-weight: 400;
+  font-size: 18px;
+  color: #424242;
+  height: 40vh;
+}
+
+.DonateFormPage2__content > img {
+  margin: auto;
+  width: 50%;
+  height: 50%;
+}
+
 
 .DonateFormPage2__CTA {
   color: white;

@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import './App.css';
 import logo from '../public/gwlogo.png';
 import chart from '../public/chart.png';
+import pie from '../public/piechart.png';
 
 const GIVEWELL_IMPACT = {
   'Against Malaria Foundation': {
@@ -92,7 +93,7 @@ const IntroPage = () => {
           {' '}
           is a world leading nonprofit dedicated to finding outstanding charities through in-depth analysis.
         </div>
-        <img className="IntroPage_chart" src={chart} alt="chart" />
+        <img src={chart} alt="chart" />
         <div>
           Maximize the lives your donations save with GiveWell's help.
         </div>
@@ -220,10 +221,11 @@ const DonationAllocations = ({baseAmount}) => {
 
   const amountAsStringIfAny = donation => donation || '--';
   return (
-    <div>
+    <div className="DonateFormPage2__content">
       <p>
         This is how your donation will be allocated
       </p>
+      <img src={pie} alt="pie chart" />
       <table>
         <tbody>
           {donations.map(({charityName, donationRatio, yourDonation}) => {
