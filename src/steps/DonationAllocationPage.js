@@ -12,7 +12,8 @@ const DonationAllocations = ({baseAmount}) => {
   return (
     <div className="DonationAllocationPage__content">
       <p>
-        This is how your donation will be allocated monthly:
+        This is how your <span className="bold">monthly donation</span> 
+        <br/>will be allocated:
       </p>
       <img src={pie} alt="pie chart" />
       <table className="DonationAllocationPage__table">
