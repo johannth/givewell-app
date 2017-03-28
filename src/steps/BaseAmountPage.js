@@ -31,7 +31,8 @@ const BaseAmountPage = ({nextStep, baseAmount, handleInputChange}) => {
     <div className="BaseAmountPage__wrapper">
       <div className="BaseAmountPage__donationWrapper">
         <p>
-          We research charities to figure out how many lives each dollar will save.
+          We research charities to figure out 
+          <br/><span className="bold">how many lives</span> each dollar will save.
         </p>
         <p>How much do you want to donate monthly?</p>
         <div className="BaseAmountPage__inputWrapper">

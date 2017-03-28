@@ -16,17 +16,17 @@ const IntroPage = () => {
   return (
     <div className="IntroPage__wrapper">
       <div className="IntroPage__header">
-        Make your donations reach further
+        Make your donations
+        <br/> <span className="bold">reach further</span>
       </div>
       <div className="IntroPage__content">
-        <div>
-          <a href="https://givewell.org">GiveWell</a>
-          {' '}
-          is a world leading nonprofit dedicated to finding outstanding charities through in-depth analysis.
+        <div> 
+        GiveWell is a world leading nonprofit dedicated to finding <span className="bold">outstanding charities </span> through in-depth analysis.
         </div>
         <img src={chart} alt="chart" />
         <div>
-          {'Maximize the lives your donations save with GiveWells help.'}
+          Maximize the lives your donations save, 
+          <br/> with {"GiveWell's"} help.
         </div>
       </div>
       <NextStepButton to="/donate/step/1">

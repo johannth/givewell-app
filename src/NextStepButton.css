@@ -3,7 +3,7 @@
 .NextStepButton {
   color: white;
   display: flex;
-  margin: 10px;
+  margin-bottom: 20px;
   width: 75%;
   height: 10vh;
   background-color: #f88920;
