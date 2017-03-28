@@ -38,6 +38,12 @@
   box-sizing: border-box;
 }
 
+.BaseAmountPage__livesSaved {
+  margin: auto;
+  padding-top: 3vh;
+  padding-bottom: 3vh;
+}
+
 .BaseAmountPage__input:focus {
   outline: none;
 }

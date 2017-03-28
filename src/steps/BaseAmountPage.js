@@ -16,12 +16,13 @@ const LivesSavedCalculations = ({baseAmount}) => {
     ),
   );
   return (
-    <div>
+    <div className="BaseAmountPage__livesSaved">
       Your monthly donation of ${baseAmount}
       {' '}
-      will save ~{livesSavedInNumberOfYears}
+      <br/> <span className="bold">will save ~{livesSavedInNumberOfYears}
       {' '}
-      lives in the next {NUMBER_OF_YEARS} years
+      lives </span>
+      <br/>in the next {NUMBER_OF_YEARS} years
     </div>
   );
 };
