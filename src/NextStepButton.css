@@ -20,10 +20,10 @@
   background-color: #EDEDED;
 }
 
-.NextStepButton > a {
-  text-decoration: none;
+.NextStepButton--disabled > a {
+  color: #454545;
 }
 
-.NextStepButton > a:visited {
-  color: white;
+.NextStepButton > a {
+  text-decoration: none;
 }

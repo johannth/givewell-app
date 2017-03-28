@@ -54,23 +54,39 @@ const Progress = ({step, totalSteps}) => {
   );
 };
 
-const DonateFormPage = ({match, state, handleInputChange}) => {
+const DonateFormPage = ({match, state, handleInputChange, handleOnBlur}) => {
   const steps = [
     <BaseAmountPage
-      baseAmount={state.baseAmount}
+      baseAmount={state.values.baseAmount}
       handleInputChange={handleInputChange}
     />,
     <DonationAllocationPage
-      baseAmount={state.baseAmount}
+      baseAmount={state.values.baseAmount}
       handleInputChange={handleInputChange}
     />,
     <PersonalInfoPage
-      firstName={state.firstName}
-      lastName={state.lastName}
-      email={state.email}
+      firstName={state.values.firstName}
+      firstNameBlurred={state.blurred.firstName}
+      lastName={state.values.lastName}
+      lastNameBlurred={state.blurred.lastName}
+      email={state.values.email}
+      emailBlurred={state.blurred.email}
       handleInputChange={handleInputChange}
+      handleOnBlur={handleOnBlur}
     />,
-    <PaymentPage />,
+    <PaymentPage
+      baseAmount={state.values.baseAmount}
+      creditCardName={state.values.creditCardName}
+      creditCardNameBlurred={state.blurred.creditCardName}
+      creditCardNumber={state.values.creditCardNumber}
+      creditCardNumberBlurred={state.blurred.creditCardNumber}
+      creditCardExpiration={state.values.creditCardExpiration}
+      creditCardExpirationBlurred={state.blurred.creditCardExpiration}
+      creditCardCVC={state.values.creditCardCVC}
+      creditCardCVCBlurred={state.blurred.creditCardCVC}
+      handleInputChange={handleInputChange}
+      handleOnBlur={handleOnBlur}
+    />,
     <SuccessPage />,
   ];
 
@@ -90,13 +106,17 @@ class App extends Component {
     super(props);
 
     this.state = {
-      baseAmount: undefined,
-      firstName: '',
-      lastName: '',
-      email: '',
+      values: {
+        baseAmount: 0,
+        firstName: '',
+        lastName: '',
+        email: '',
+      },
+      blurred: {firstName: false, lastName: false, email: false},
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleOnBlur = this.handleOnBlur.bind(this);
   }
 
   handleInputChange(event) {
@@ -104,9 +124,24 @@ class App extends Component {
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
 
-    this.setState({
-      [name]: value,
-    });
+    const state = {
+      ...this.state,
+      values: {...this.state.values, [name]: value},
+    };
+
+    this.setState(state);
+  }
+
+  handleOnBlur(event) {
+    const target = event.target;
+    const name = target.name;
+
+    const state = {
+      ...this.state,
+      blurred: {...this.state.blurred, [name]: true},
+    };
+
+    this.setState(state);
   }
 
   passState(ChildComponent, match) {
@@ -114,6 +149,7 @@ class App extends Component {
       <ChildComponent
         state={this.state}
         handleInputChange={this.handleInputChange}
+        handleOnBlur={this.handleOnBlur}
         {...match}
       />
     );

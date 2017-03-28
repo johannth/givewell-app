@@ -45,7 +45,7 @@ const BaseAmountPage = ({nextStep, baseAmount, handleInputChange}) => {
             className="BaseAmountPage__input"
           />
         </div>
-        {baseAmount && <LivesSavedCalculations baseAmount={baseAmount} />}
+        {baseAmount > 0 && <LivesSavedCalculations baseAmount={baseAmount} />}
         <NextStepButton to={nextStep} disabled={!baseAmount}>
           Next
         </NextStepButton>
