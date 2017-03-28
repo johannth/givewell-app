@@ -90,12 +90,10 @@ const DonateFormPage = ({match, state, handleInputChange}) => {
 const NextStepButton = ({to, enabled = true, children}) => {
   return (
     <div
-      className={classNames(
-        'NextStepButton',
-        true,
-        'NextStepButton--disabled',
-        !enabled,
-      )}
+      className={classNames({
+        NextStepButton: true,
+        'NextStepButton--disabled': !enabled,
+      })}
     >
       <Link
         to={to}
@@ -185,7 +183,7 @@ const DonateFormPage1 = ({nextStep, baseAmount, handleInputChange}) => {
           />
         </div>
         {baseAmount && <LivesSavedCalculations baseAmount={baseAmount} />}
-        <NextStepButton to={nextStep} enabled={baseAmount}>
+        <NextStepButton to={nextStep} enabled={baseAmount > 0}>
           Next
         </NextStepButton>
       </div>
@@ -197,7 +195,7 @@ const DonateFormPage2 = ({nextStep, baseAmount}) => {
   return (
     <div className="DonateFormPage2__wrapper">
       <DonationAllocations baseAmount={baseAmount} />
-      <NextStepButton to={nextStep} enabled={true}>
+      <NextStepButton to={nextStep}>
         Checkout
       </NextStepButton>
     </div>

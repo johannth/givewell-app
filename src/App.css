@@ -121,6 +121,10 @@ a:link {
   font-size: 20px;
 }
 
+.NextStepButton--disabled {
+  background-color: #EDEDED;
+}
+
 .NextStepButton > a {
   text-decoration: none;
 }
