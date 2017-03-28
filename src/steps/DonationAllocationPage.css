@@ -1,12 +1,13 @@
 .DonationAllocationPage__wrapper {
   display: flex;
-  width: 90vw;
-  max-width: 350px;
+  width: 100%;
+  /*max-width: 350px;*/
   flex-direction: column;
   align-self: center;
   justify-content: space-around;
   align-items: center;
   height: 90vh;
+  text-align: center;
 }
 
 .DonationAllocationPage__content {
@@ -18,19 +19,27 @@
   font-weight: 400;
   font-size: 18px;
   color: #424242;
-  height: 40vh;
+  text-align: center;
+  height: 50vh;
 }
 
 .DonationAllocationPage__content > img {
   margin: auto;
-  width: 50%;
+  width: auto;
   height: 50%;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+}
+
+.DonationAllocationPage__table {
+  margin: auto;
+  padding-top: 2vh;
 }
 
 .DonationAllocationPage__CTA {
   color: white;
   display: flex;
-  margin: 10px;
+  margin: 10vh;
   width: 75%;
   height: 10vh;
   background-color: #f88920;

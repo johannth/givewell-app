@@ -3,7 +3,7 @@ import React from 'react';
 import NextStepButton from '../NextStepButton';
 import './DonationAllocationPage.css';
 import {calculateDonationAllocationPerRepeat} from '../charities';
-import pie from './piechart.png';
+import pie from './DonationAllocationInfo.png';
 
 const DonationAllocations = ({baseAmount}) => {
   const donations = calculateDonationAllocationPerRepeat(baseAmount);
@@ -15,7 +15,7 @@ const DonationAllocations = ({baseAmount}) => {
         This is how your donation will be allocated monthly:
       </p>
       <img src={pie} alt="pie chart" />
-      <table>
+      <table className="DonationAllocationPage__table">
         <tbody>
           {donations.map(({
             charityName,

@@ -93,7 +93,7 @@ a:link {
 
 .IntroPage__content > img {
   margin: auto;
-  width: 45%;
+  width: auto;
   height: 45%;
 }
 
@@ -102,3 +102,4 @@ a:link {
   text-align: center;
   padding: 10px;
 }
+
