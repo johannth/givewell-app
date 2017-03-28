@@ -74,7 +74,19 @@ const DonateFormPage = ({match, state, handleInputChange, handleOnBlur}) => {
       handleInputChange={handleInputChange}
       handleOnBlur={handleOnBlur}
     />,
-    <PaymentPage />,
+    <PaymentPage
+      baseAmount={state.values.baseAmount}
+      creditCardName={state.values.creditCardName}
+      creditCardNameBlurred={state.blurred.creditCardName}
+      creditCardNumber={state.values.creditCardNumber}
+      creditCardNumberBlurred={state.blurred.creditCardNumber}
+      creditCardExpiration={state.values.creditCardExpiration}
+      creditCardExpirationBlurred={state.blurred.creditCardExpiration}
+      creditCardCVC={state.values.creditCardCVC}
+      creditCardCVCBlurred={state.blurred.creditCardCVC}
+      handleInputChange={handleInputChange}
+      handleOnBlur={handleOnBlur}
+    />,
     <SuccessPage />,
   ];
 
