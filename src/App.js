@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 import './App.css';
 import logo from '../public/gwlogo.png';
+import chart from '../public/chart.png';
 
 const GIVEWELL_IMPACT = {
   'Against Malaria Foundation': {
@@ -89,10 +90,11 @@ const IntroPage = () => {
         <div>
           <a href="https://givewell.org">GiveWell</a>
           {' '}
-          is a world leading nonprofit dedicated to finding outstanding giving opportunities through in-depth analysis.
+          is a world leading nonprofit dedicated to finding outstanding charities through in-depth analysis.
         </div>
+        <img className="IntroPage_chart" src={chart} alt="chart" />
         <div>
-          Maximize the impact of your charity donations with GiveWells help.
+          Maximize the lives your donations save with GiveWell's help.
         </div>
       </div>
       <NextStepButton to="/donate/step/1">
