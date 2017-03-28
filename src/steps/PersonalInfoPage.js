@@ -32,6 +32,7 @@ const PersonalInfoPage = (
           type="text"
           name="firstName"
           className={classNames({
+            Input: true,
             'Input--error': firstNameBlurred && !firstNameIsValid,
           })}
           value={firstName}
@@ -44,6 +45,7 @@ const PersonalInfoPage = (
           type="text"
           name="lastName"
           className={classNames({
+            Input: true,
             'Input--error': lastNameBlurred && !lastNameIsValid,
           })}
           value={lastName}
@@ -56,6 +58,7 @@ const PersonalInfoPage = (
           type="email"
           name="email"
           className={classNames({
+            Input: true,
             'Input--error': emailBlurred && !emailIsValid,
           })}
           value={email}

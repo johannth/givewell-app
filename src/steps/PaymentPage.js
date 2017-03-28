@@ -96,7 +96,19 @@ const PaymentPage = (
         />
       </div>
       <div>
-        <a>PayPal</a>
+        or
+      </div>
+      <div>
+        <img
+          src="https://www.paypalobjects.com/webstatic/en_US/i/btn/png/blue-rect-paypal-60px.png"
+          alt="PayPal"
+        />
+      </div>
+      <div>
+        You will be charged $
+        {baseAmount}
+        {' '}
+        on a monthly basis. You can cancel your donation at any time.
       </div>
       <NextStepButton to={nextStep} disabled={!isValid}>
         Checkout

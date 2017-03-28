@@ -107,3 +107,33 @@ a:link {
   /*padding: 10px;*/
 }
 
+.Input {
+  appearance: none;
+  color: #424242;
+  border: 1px solid #dee2e5;
+  margin-bottom: 15px;
+  outline: none;
+  font-size: 20px;
+  padding: 10px;
+  border-radius: 0;
+}
+
+.Input::-webkit-input-placeholder {
+    color: #424242;
+}
+.Input:-moz-placeholder {
+    /* FF 4-18 */
+    color: #424242;
+}
+.Input::-moz-placeholder {
+    /* FF 19+ */
+    color: #424242;
+}
+.Input:-ms-input-placeholder {
+    /* IE 10+ */
+    color: #424242;
+}
+
+.Input-Error {
+
+}
