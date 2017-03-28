@@ -1,17 +1,28 @@
 import React from 'react';
+import classNames from 'classnames';
 
 import NextStepButton from '../NextStepButton';
 import './PersonalInfoPage.css';
+import isEmail from 'validator/lib/isEmail';
 
 const PersonalInfoPage = (
-  {nextStep, firstName, lastName, email, handleInputChange},
+  {
+    nextStep,
+    firstName,
+    firstNameBlurred,
+    lastName,
+    lastNameBlurred,
+    email,
+    emailBlurred,
+    handleInputChange,
+    handleOnBlur,
+  },
 ) => {
-  const isValid = firstName &&
-    firstName.length > 0 &&
-    lastName &&
-    lastName.length > 0 &&
-    email &&
-    email.length > 0;
+  const firstNameIsValid = firstName && firstName.length > 0;
+  const lastNameIsValid = lastName && lastName.length > 0;
+  const emailIsValid = email && email.length > 0 && isEmail(email);
+
+  const isValid = firstNameIsValid && lastNameIsValid && emailIsValid;
 
   return (
     <div>
@@ -20,26 +31,38 @@ const PersonalInfoPage = (
         <input
           type="text"
           name="firstName"
+          className={classNames({
+            'Input--error': firstNameBlurred && !firstNameIsValid,
+          })}
           value={firstName}
           placeholder="First Name"
           tabIndex="1"
           onChange={handleInputChange}
+          onBlur={handleOnBlur}
         />
         <input
           type="text"
           name="lastName"
+          className={classNames({
+            'Input--error': lastNameBlurred && !lastNameIsValid,
+          })}
           value={lastName}
           placeholder="Last Name"
           tabIndex="2"
           onChange={handleInputChange}
+          onBlur={handleOnBlur}
         />
         <input
           type="email"
           name="email"
+          className={classNames({
+            'Input--error': emailBlurred && !emailIsValid,
+          })}
           value={email}
-          onChange={handleInputChange}
           tabIndex="3"
           placeholder="Email"
+          onChange={handleInputChange}
+          onBlur={handleOnBlur}
         />
       </div>
       <NextStepButton to={nextStep} disabled={!isValid}>
