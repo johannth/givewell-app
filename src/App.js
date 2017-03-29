@@ -31,6 +31,7 @@ const DonateFormPage = ({match, state, handleInputChange, handleOnBlur}) => {
   const steps = [
     <BaseAmountPage
       baseAmount={state.values.baseAmount}
+      supportGiveWell={state.values.supportGiveWell}
       handleInputChange={handleInputChange}
     />,
     <DonationAllocationPage
