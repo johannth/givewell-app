@@ -2,50 +2,15 @@ import React, {Component} from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 import './App.css';
-import logo from './gwlogo.png';
-import chart from './chart.png';
-import evidence from './1evidence.png';
-import costeffective from './2costeffective.png';
-import vetted from './3vetted.png';
-import unfunded from './4unfunded.png';
 
-import NextStepButton from './NextStepButton';
+import IntroPage from './IntroPage';
+import Header from './Header';
 import BaseAmountPage from './steps/BaseAmountPage';
 import DonationAllocationPage from './steps/DonationAllocationPage';
 import PaymentPage from './steps/PaymentPage';
 import PersonalInfoPage from './steps/PersonalInfoPage';
 import SuccessPage from './steps/SuccessPage';
 import SharePage from './steps/SharePage';
-
-const IntroPage = () => {
-  return (
-    <div className="IntroPage__wrapper">
-      <div className="IntroPage__header">
-        Make your donations
-        <br/> <span className="bold">reach further</span>
-      </div>
-      <div className="IntroPage__content">
-        <div> 
-        GiveWell is a world leading nonprofit 
-        <br/>dedicated to finding <span className="bold">outstanding charities </span> 
-        <br/>through in-depth analysis.
-        </div>
-        <img src={chart} alt="chart" />
-        <img src={evidence} alt="evidence backed" />
-        <img src={costeffective} alt="cost effective" />
-        <img src={vetted} alt="vetted" />
-        <img src={unfunded} alt="unfunded" />
-        <div>
-          Maximize the lives your donations save, 
-          <br/> with {"GiveWell's"} help.
-        </div>
-      </div>
-      <NextStepButton to="/donate/step/1">
-        Count me in
-      </NextStepButton>
-    </div>
-  );
-};
 
 const Progress = ({step, totalSteps}) => {
   const percentageCompleted = step / totalSteps * 100;
@@ -105,6 +70,7 @@ const DonateFormPage = ({match, state, handleInputChange, handleOnBlur}) => {
   const step = parseInt(match.params.step, 10);
   return (
     <div>
+      <Header small={true} />
       <Progress step={step} totalSteps={steps.length} />
       {React.cloneElement(steps[step - 1], {
         nextStep: `/donate/step/${step + 1}`,
@@ -178,20 +144,13 @@ class App extends Component {
   render() {
     return (
       <Router basename={this.basename()}>
-        <div className="App__Container">
-          <div className="App__navBar">
-            <img className="App__navBar__logo" src={logo} alt="GiveWell" />
-          </div>
-          <div className="App__viewportContainer">
-            <Switch>
-              <Route exact path="/" component={IntroPage} />
-              <Route
-                path="/donate/step/:step"
-                render={this.passState.bind(this, DonateFormPage)}
-              />
-            </Switch>
-          </div>
-        </div>
+        <Switch>
+          <Route exact path="/" component={IntroPage} />
+          <Route
+            path="/donate/step/:step"
+            render={this.passState.bind(this, DonateFormPage)}
+          />
+        </Switch>
       </Router>
     );
   }

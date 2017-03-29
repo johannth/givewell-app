@@ -17,23 +17,6 @@ a:link {
   color: $colorBlack;
 }
 
-.App__navBar {
-  background-color: $colorLightGray;
-  padding-top: 2vh;
-  padding-bottom: 2vh;
-  height: 7vh;
-  max-height: 50px;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-
-}
-
-.App__navBar__logo {
-  height: 100%;
-  margin: auto;
-}
-
 
 .App__viewportContainer {
   display: flex;
@@ -60,49 +43,6 @@ a:link {
   height: 10px;
   border: 0px;
   box-sizing: border-box;
-}
-
-/* Intro Page*/
-
-.IntroPage__wrapper {
-  display: flex;
-  width: 95w;
-  max-width: 350px;
-  flex-direction: column;
-  align-self: center;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.IntroPage__header {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  font-size: 32px;
-  color: $colorBlack;
-  text-align: center;
-  justify-content: center;
-}
-
-.IntroPage__content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 90vw;
-  font-size: 18px;
-  color: $colorBlack;
-}
-
-.IntroPage__content > img {
-  margin: auto;
-  max-width: 200px;
-  height: auto;
-}
-
-.IntroPage__content > div {
-  font-size: 20px;
-  text-align: center;
-  /*padding: 10px;*/
 }
 
 .Input {

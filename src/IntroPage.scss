@@ -1,0 +1,43 @@
+@import './Constants.scss';
+
+.IntroPage__wrapper {
+  display: flex;
+  width: 95w;
+  max-width: 350px;
+  flex-direction: column;
+  align-self: center;
+  justify-content: space-around;
+  align-items: center;
+  height: 93vh;
+}
+
+.IntroPage__header {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-size: 32px;
+  color: $colorBlack;
+  text-align: center;
+  justify-content: center;
+}
+
+.IntroPage__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 90vw;
+  font-size: 18px;
+  color: $colorBlack;
+  height: 40vh;
+}
+
+.IntroPage__content > img {
+  margin: auto;
+  width: auto;
+  height: 45%;
+}
+
+.IntroPage__content > div {
+  font-size: 20px;
+  text-align: center;
+}
