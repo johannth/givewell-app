@@ -21,7 +21,9 @@ const IntroPage = () => {
       </div>
       <div className="IntroPage__content">
         <div> 
-        GiveWell is a world leading nonprofit dedicated to finding <span className="bold">outstanding charities </span> through in-depth analysis.
+        GiveWell is a world leading nonprofit 
+        <br/>dedicated to finding <span className="bold">outstanding charities </span> 
+        <br/>through in-depth analysis.
         </div>
         <img src={chart} alt="chart" />
         <div>
