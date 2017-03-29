@@ -43,7 +43,7 @@ a:link {
 
 .ProgressBar__background {
   width: 100%;
-  background-color: #424242;
+  background-color: #F1F1F1;
   height: 10px;
   border: 0px;
   box-sizing: border-box; }
