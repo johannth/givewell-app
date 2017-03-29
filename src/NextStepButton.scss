@@ -1,21 +1,27 @@
+@import 'Constants.scss';
+
 .NextStepButton {
-  color: #FFFFFF;
+  color: $colorWhite;
   display: flex;
   margin-bottom: 20px;
   width: 75%;
   height: 10vh;
-  background-color: #FF7F00;
+  background-color: $colorOrange;
   text-transform: uppercase;
   letter-spacing: 1px;
   justify-content: center;
   align-items: center;
-  font-size: 20px; }
+  font-size: 20px;
+}
 
 .NextStepButton--disabled {
-  background-color: #F1F1F1; }
+  background-color: $colorLightGray;
+}
 
 .NextStepButton--disabled > a {
-  color: #424242; }
+  color: $colorBlack;
+}
 
 .NextStepButton > a {
-  text-decoration: none; }
+  text-decoration: none;
+}

@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "concurrently": "^3.4.0",
     "gh-pages": "^0.12.0",
+    "node-sass": "^4.5.2",
     "react-scripts": "0.9.4"
   },
   "dependencies": {
@@ -18,8 +20,11 @@
   },
   "homepage": "https://johannth.github.io/givewell-app",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build && cp public/404.html build/404.html && cp public/redirect.js build/static/js/redirect.js",
+    "build-css": "node-sass src/ -o src/",
+    "watch-css": "yarn run build-css && node-sass src/ -o src/ --watch --recursive",
+    "start-js": "react-scripts start",
+    "start": "concurrently \"yarn start-js\" \"yarn watch-css\"",
+    "build": "yarn run build-css && react-scripts build && cp public/404.html build/404.html && cp public/redirect.js build/static/js/redirect.js",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "predeploy": "rm -rf build && yarn run build && cp circle.yml build/circle.yml",
