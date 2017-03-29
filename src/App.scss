@@ -12,12 +12,13 @@
   color: $colorBlack;
 }
 
-
-.App__viewportContainer {
+.PageWrapper {
   display: flex;
+  max-width: 375px;
   flex-direction: column;
-  width: 330px;
-  height: 100vh;
+  align-self: center;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .bold {
@@ -35,6 +36,7 @@
   display: flex;
   flex-direction: column;
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .ProgressBar__background {
@@ -51,12 +53,14 @@
 }
 
 .Input {
+  width: 325px;
   appearance: none;
   color: $colorBlack;
   border: 1px solid $colorGray;
   margin-bottom: 15px;
   outline: none;
-  font-size: 20px;
+  font-size: 16pt;
+  font-family: $fontFamily;
   padding: 10px;
   border-radius: 0;
 }

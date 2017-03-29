@@ -13,7 +13,7 @@ const IntroPage = () => {
   return (
     <div className="App__Container">
       <Header />
-      <div className="IntroPage__wrapper">
+      <div className="PageWrapper">
         <div className="IntroPage__header">
           Make your donations
           <br /> <span className="bold">reach further</span>

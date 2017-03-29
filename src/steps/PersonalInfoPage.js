@@ -25,8 +25,7 @@ const PersonalInfoPage = (
   const isValid = firstNameIsValid && lastNameIsValid && emailIsValid;
 
   return (
-    <div>
-      <h2>My Info</h2>
+    <div className="PageWrapper">
       <div>
         <input
           type="text"

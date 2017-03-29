@@ -1,16 +1,5 @@
 @import './Constants.scss';
 
-.IntroPage__wrapper {
-  display: flex;
-  width: 95w;
-  max-width: 350px;
-  flex-direction: column;
-  align-self: center;
-  justify-content: space-around;
-  align-items: center;
-  height: 93vh;
-}
-
 .IntroPage__header {
   display: flex;
   flex-direction: column;

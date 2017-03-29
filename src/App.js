@@ -66,7 +66,7 @@ const DonateFormPage = ({match, state, handleInputChange, handleOnBlur}) => {
 
   const step = parseInt(match.params.step, 10);
   return (
-    <div>
+    <div className="App__Container">
       <Header small={true} />
       <div className="DonationFormPage">
         <Progress step={step} totalSteps={steps.length} />
