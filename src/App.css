@@ -8,7 +8,7 @@ a:link {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: 'Lato', arial, sans-serif;
+  font-family: "Lato";
   font-weight: 300;
   color: #424242; }
 
@@ -63,7 +63,6 @@ a:link {
   display: flex;
   flex-direction: column;
   width: 100%;
-  font-family: 'Lato';
   font-size: 32px;
   color: #424242;
   text-align: center;
@@ -74,7 +73,6 @@ a:link {
   flex-direction: column;
   justify-content: center;
   width: 90vw;
-  font-family: 'Lato';
   font-size: 18px;
   color: #424242;
   height: 40vh; }

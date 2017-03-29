@@ -1,4 +1,4 @@
-@import 'Constants';
+@import 'Constants.scss';
 
 @import url('https://fonts.googleapis.com/css?family=Lato:100,300,400,400i,700,900');
 
@@ -79,7 +79,6 @@ a:link {
   display: flex;
   flex-direction: column;
   width: 100%;
-  font-family: 'Lato';
   font-size: 32px;
   color: $colorBlack;
   text-align: center;
@@ -91,7 +90,6 @@ a:link {
   flex-direction: column;
   justify-content: center;
   width: 90vw;
-  font-family: 'Lato';
   font-size: 18px;
   color: $colorBlack;
   height: 40vh;
