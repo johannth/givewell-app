@@ -12,8 +12,8 @@ a:link {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: 'Lato', arial, sans-serif;
-  font-weight: 300;
+  font-family: $fontFamily;
+  font-weight: $fontWeightNormal;
   color: $colorBlack;
 }
 
@@ -43,7 +43,7 @@ a:link {
 }
 
 .bold {
-  font-weight: 900;
+  font-weight: $fontWeightBlack;
 }
 
 /* Progressbar */
