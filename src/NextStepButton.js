@@ -13,6 +13,10 @@ const NextStepButton = ({to, disabled, children}) => {
       })}
     >
       <Link
+        className={classNames({
+          NextStepButton__link: true,
+          'NextStepButton__link--disabled': disabled,
+        })}
         to={to}
         onClick={e => {
           if (disabled) {

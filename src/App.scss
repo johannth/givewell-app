@@ -2,11 +2,6 @@
 
 @import url('https://fonts.googleapis.com/css?family=Lato:100,300,400,400i,700,900');
 
-a:link {
-  text-decoration: underline;
-  color: $colorBlack;
-}
-
 .App__Container {
   width: 100vw;
   display: flex;
@@ -17,33 +12,23 @@ a:link {
   color: $colorBlack;
 }
 
-.App__navBar {
-  background-color: $colorLightGray;
-  padding-top: 2vh;
-  padding-bottom: 2vh;
-  height: 7vh;
-  max-height: 50px;
-  width: 100vw;
+.PageWrapper {
   display: flex;
-  justify-content: center;
-
-}
-
-.App__navBar__logo {
-  height: 100%;
-  margin: auto;
-}
-
-
-.App__viewportContainer {
-  display: flex;
+  max-width: 375px;
   flex-direction: column;
-  width: 330px;
-  height: 100vh;
+  align-self: center;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .bold {
   font-weight: $fontWeightBlack;
+}
+
+.Page {
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-bottom: 25px;
 }
 
 /* Progressbar */
@@ -51,67 +36,32 @@ a:link {
 .ProgressBar__wrapper {
   display: flex;
   flex-direction: column;
-  padding-top: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .ProgressBar__background {
   width: 100%;
   background-color: $colorLightGray;
-  height: 10px;
-  border: 0px;
+  height: 5px;
+  border: 0;
   box-sizing: border-box;
 }
 
-/* Intro Page*/
-
-.IntroPage__wrapper {
-  display: flex;
-  width: 95w;
-  max-width: 350px;
-  flex-direction: column;
-  align-self: center;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.IntroPage__header {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  font-size: 32px;
-  color: $colorBlack;
-  text-align: center;
-  justify-content: center;
-}
-
-.IntroPage__content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 90vw;
-  font-size: 18px;
-  color: $colorBlack;
-}
-
-.IntroPage__content > img {
-  margin: auto;
-  max-width: 200px;
-  height: auto;
-}
-
-.IntroPage__content > div {
-  font-size: 20px;
-  text-align: center;
-  /*padding: 10px;*/
+.ProgressBar__bar {
+  height: 100%;
+  background-color: $colorOrange;
 }
 
 .Input {
+  width: 325px;
   appearance: none;
   color: $colorBlack;
   border: 1px solid $colorGray;
   margin-bottom: 15px;
   outline: none;
-  font-size: 20px;
+  font-size: 16pt;
+  font-family: $fontFamily;
   padding: 10px;
   border-radius: 0;
 }

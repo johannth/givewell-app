@@ -1,0 +1,19 @@
+@import "Constants.scss";
+
+
+.Header {
+  background-color: $colorLightGray;
+  width: 100%;
+  height: 72px;
+  display: flex;
+  justify-content: center;
+}
+
+.Header--small {
+  height: 45px;
+}
+
+.Header__logo {
+  height: 50%;
+  margin: auto;
+}
