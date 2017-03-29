@@ -11,6 +11,7 @@ import DonationAllocationPage from './steps/DonationAllocationPage';
 import PaymentPage from './steps/PaymentPage';
 import PersonalInfoPage from './steps/PersonalInfoPage';
 import SuccessPage from './steps/SuccessPage';
+import SharePage from './steps/SharePage';
 
 const IntroPage = () => {
   return (
@@ -90,6 +91,7 @@ const DonateFormPage = ({match, state, handleInputChange, handleOnBlur}) => {
       handleOnBlur={handleOnBlur}
     />,
     <SuccessPage />,
+    <SharePage />,
   ];
 
   const step = parseInt(match.params.step, 10);
