@@ -1,6 +1,5 @@
 import React from 'react';
 
-import chart from './chart.png';
 import evidence from './1evidence.png';
 import costeffective from './2costeffective.png';
 import vetted from './3vetted.png';
