@@ -68,7 +68,7 @@ const DonateFormPage = ({match, state, handleInputChange, handleOnBlur}) => {
   return (
     <div className="App__Container">
       <Header small={true} />
-      <div className="DonationFormPage">
+      <div className="Page">
         <Progress step={step} totalSteps={steps.length} />
         {React.cloneElement(steps[step - 1], {
           nextStep: `/donate/step/${step + 1}`,

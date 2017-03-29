@@ -1,26 +1,43 @@
 .IntroPage__header {
-  display: flex;
-  flex-direction: column;
   width: 100%;
-  font-size: 32px;
+  font-size: 27pt;
   color: #424242;
   text-align: center;
-  justify-content: center; }
+  font-weight: 300;
+  margin-top: 18px;
+  margin-bottom: 18px; }
 
-.IntroPage__content {
+.IntroPage__paragraph {
+  margin-top: 0px;
+  font-size: 15pt;
+  text-align: center;
+  line-height: 19pt; }
+
+.IntroPage__subheader {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-size: 23pt; }
+
+.IntroPage__bulletpoints {
+  list-style-type: none;
+  padding: 0px; }
+
+.IntroPage__bulletpoint {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 90vw;
-  font-size: 18px;
-  color: #424242;
-  height: 40vh; }
+  flex-direction: row;
+  margin-bottom: 25px; }
 
-.IntroPage__content > img {
-  margin: auto;
-  width: auto;
-  height: 45%; }
+.IntroPage__bulletpoint__icon {
+  height: 85px;
+  margin-right: 10px; }
 
-.IntroPage__content > div {
-  font-size: 20px;
-  text-align: center; }
+.IntroPage__bulletpoint__header {
+  margin-top: 0px;
+  margin-bottom: 3px;
+  font-size: 13pt;
+  font-weight: 700; }
+
+.IntroPage__bulletpoint__description {
+  margin-top: 0px;
+  margin-bottom: 3px;
+  font-size: 13pt; }
