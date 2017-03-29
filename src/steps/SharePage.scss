@@ -1,0 +1,19 @@
+.SharePage__wrapper {
+  display: flex;
+  width: 95w;
+  max-width: 350px;
+  flex-direction: column;
+  align-self: center;
+  justify-content: space-around;
+  align-items: center;
+  height: 93vh;
+}
+
+.SharePage__header {
+  width: 100%;
+  font-family: 'Lato';
+  font-size: 32px;
+  color: #424242;
+  text-align: center;
+  justify-content: center;
+}
