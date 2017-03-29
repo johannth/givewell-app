@@ -4,6 +4,10 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import './App.css';
 import logo from './gwlogo.png';
 import chart from './chart.png';
+import evidence from './1evidence.png';
+import costeffective from './2costeffective.png';
+import vetted from './3vetted.png';
+import unfunded from './4unfunded.png';
 
 import NextStepButton from './NextStepButton';
 import BaseAmountPage from './steps/BaseAmountPage';
@@ -27,6 +31,10 @@ const IntroPage = () => {
         <br/>through in-depth analysis.
         </div>
         <img src={chart} alt="chart" />
+        <img src={evidence} alt="evidence backed" />
+        <img src={costeffective} alt="cost effective" />
+        <img src={vetted} alt="vetted" />
+        <img src={unfunded} alt="unfunded" />
         <div>
           Maximize the lives your donations save, 
           <br/> with {"GiveWell's"} help.

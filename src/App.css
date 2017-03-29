@@ -56,8 +56,7 @@ a:link {
   flex-direction: column;
   align-self: center;
   justify-content: space-around;
-  align-items: center;
-  height: 93vh; }
+  align-items: center; }
 
 .IntroPage__header {
   display: flex;
@@ -74,13 +73,12 @@ a:link {
   justify-content: center;
   width: 90vw;
   font-size: 18px;
-  color: #424242;
-  height: 40vh; }
+  color: #424242; }
 
 .IntroPage__content > img {
   margin: auto;
-  width: auto;
-  height: 45%; }
+  max-width: 200px;
+  height: auto; }
 
 .IntroPage__content > div {
   font-size: 20px;
