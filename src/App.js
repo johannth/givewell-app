@@ -15,16 +15,13 @@ import SharePage from './steps/SharePage';
 const Progress = ({step, totalSteps}) => {
   const percentageCompleted = step / totalSteps * 100;
   const progressBarStyle = {
-    height: '100%',
     width: percentageCompleted + '%',
-    backgroundColor: '#f88920',
-    borderRadius: '0px',
   };
 
   return (
     <div className="ProgressBar__wrapper">
       <div className="ProgressBar__background">
-        <div style={progressBarStyle} />
+        <div className="ProgressBar__bar" style={progressBarStyle} />
       </div>
     </div>
   );
@@ -71,10 +68,12 @@ const DonateFormPage = ({match, state, handleInputChange, handleOnBlur}) => {
   return (
     <div>
       <Header small={true} />
-      <Progress step={step} totalSteps={steps.length} />
-      {React.cloneElement(steps[step - 1], {
-        nextStep: `/donate/step/${step + 1}`,
-      })}
+      <div className="DonationFormPage">
+        <Progress step={step} totalSteps={steps.length} />
+        {React.cloneElement(steps[step - 1], {
+          nextStep: `/donate/step/${step + 1}`,
+        })}
+      </div>
     </div>
   );
 };

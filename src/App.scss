@@ -24,20 +24,30 @@
   font-weight: $fontWeightBlack;
 }
 
+.DonationFormPage {
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
 /* Progressbar */
 
 .ProgressBar__wrapper {
   display: flex;
   flex-direction: column;
-  padding-top: 20px;
+  margin-top: 20px;
 }
 
 .ProgressBar__background {
   width: 100%;
   background-color: $colorLightGray;
-  height: 10px;
-  border: 0px;
+  height: 5px;
+  border: 0;
   box-sizing: border-box;
+}
+
+.ProgressBar__bar {
+  height: 100%;
+  background-color: $colorOrange;
 }
 
 .Input {
