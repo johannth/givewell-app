@@ -1,10 +1,12 @@
 {
-  "main.css": "static/css/main.997b4bb0.css",
-  "main.css.map": "static/css/main.997b4bb0.css.map",
-  "main.js": "static/js/main.f4991bbb.js",
-  "main.js.map": "static/js/main.f4991bbb.js.map",
+  "main.css": "static/css/main.1ec62692.css",
+  "main.css.map": "static/css/main.1ec62692.css.map",
+  "main.js": "static/js/main.90dfa504.js",
+  "main.js.map": "static/js/main.90dfa504.js.map",
   "static/media/1evidence.png": "static/media/1evidence.e2c25abe.png",
   "static/media/3vetted.png": "static/media/3vetted.974ddd0a.png",
   "static/media/4unfunded.png": "static/media/4unfunded.2d590851.png",
-  "static/media/DonationAllocationInfo.png": "static/media/DonationAllocationInfo.2739f209.png"
+  "static/media/FacebookShareIcon.svg": "static/media/FacebookShareIcon.c8db9726.svg",
+  "static/media/TumblrShareIcon.svg": "static/media/TumblrShareIcon.9791d5bc.svg",
+  "static/media/TwitterShareIcon.svg": "static/media/TwitterShareIcon.ff8281bf.svg"
 }
