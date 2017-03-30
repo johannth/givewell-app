@@ -1,0 +1,26 @@
+@import './Constants.scss';
+
+.SharePage__header {
+  width: 100%;
+  font-size: 27pt;
+  color: $colorBlack;
+  text-align: center;
+  font-weight: $fontWeightNormal;
+  margin-top: 18px;
+  margin-bottom: 18px;
+}
+
+
+.SharePage__paragraph {
+  text-align: center;
+  margin-top: 0px;
+  margin-bottom: 15px;
+}
+
+.SharePage__shareButtons
+{
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+}

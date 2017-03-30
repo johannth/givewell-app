@@ -10,7 +10,7 @@ import DonationAllocationPage from './steps/DonationAllocationPage';
 import PaymentPage from './steps/PaymentPage';
 import PersonalInfoPage from './steps/PersonalInfoPage';
 import SuccessPage from './steps/SuccessPage';
-import SharePage from './steps/SharePage';
+import SharePage from './SharePage';
 
 const Progress = ({step, totalSteps}) => {
   const percentageCompleted = step / totalSteps * 100;
@@ -68,7 +68,6 @@ const DonateFormPage = ({match, state, handleInputChange, handleOnBlur}) => {
       notifyMyImpact={state.values.notifyMyImpact}
       handleInputChange={handleInputChange}
     />,
-    <SharePage />,
   ];
 
   const step = parseInt(match.params.step, 10);
@@ -78,7 +77,9 @@ const DonateFormPage = ({match, state, handleInputChange, handleOnBlur}) => {
       <div className="Page">
         <Progress step={step} totalSteps={steps.length} />
         {React.cloneElement(steps[step - 1], {
-          nextStep: `/donate/step/${step + 1}`,
+          nextStep: step === steps.length
+            ? '/donate/success'
+            : `/donate/step/${step + 1}`,
         })}
       </div>
     </div>
@@ -156,6 +157,11 @@ class App extends Component {
           <Route
             path="/donate/step/:step"
             render={this.passState.bind(this, DonateFormPage)}
+          />
+          <Route
+            exact
+            path="/donate/success"
+            render={this.passState.bind(this, SharePage)}
           />
         </Switch>
       </Router>

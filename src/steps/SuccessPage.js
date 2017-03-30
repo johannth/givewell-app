@@ -1,7 +1,7 @@
 import React from 'react';
 
 import NextStepButton from '../NextStepButton';
-import './SharePage.css';
+import './SuccessPage.css';
 
 const SuccessPage = (
   {
