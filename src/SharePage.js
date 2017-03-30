@@ -1,6 +1,5 @@
 import React from 'react';
 
-import NextStepButton from './NextStepButton';
 import Header from './Header';
 import FacebookShareIcon from './FacebookShareIcon.svg';
 import TwitterShareIcon from './TwitterShareIcon.svg';
@@ -8,7 +7,7 @@ import TumblrShareIcon from './TumblrShareIcon.svg';
 
 import './SharePage.css';
 
-const SuccessPage = ({}) => {
+const SuccessPage = () => {
   return (
     <div className="App__Container">
       <Header />
@@ -25,9 +24,9 @@ const SuccessPage = ({}) => {
           Every donation counts
         </p>
         <div className="SharePage__shareButtons">
-          <img src={FacebookShareIcon} />
-          <img src={TwitterShareIcon} />
-          <img src={TumblrShareIcon} />
+          <img src={FacebookShareIcon} alt="Share to Facebook" />
+          <img src={TwitterShareIcon} alt="Share to Twitter" />
+          <img src={TumblrShareIcon} alt="Share to Tumblr" />
         </div>
       </div>
     </div>

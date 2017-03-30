@@ -6,7 +6,7 @@ import {
   calculateDonationAllocationPerRepeat,
   calculateMonthlyTotal,
 } from '../charities';
-import {sum, humanize} from '../utils';
+import {humanize} from '../utils';
 
 const DonationAllocationPage = ({nextStep, baseAmount, supportGiveWell}) => {
   const donations = calculateDonationAllocationPerRepeat(baseAmount);
