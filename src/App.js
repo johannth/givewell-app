@@ -62,7 +62,12 @@ const DonateFormPage = ({match, state, handleInputChange, handleOnBlur}) => {
       handleInputChange={handleInputChange}
       handleOnBlur={handleOnBlur}
     />,
-    <SuccessPage />,
+    <SuccessPage
+      notifyAllocations={state.values.notifyAllocations}
+      notifyGiveWellMonthly={state.values.notifyGiveWellMonthly}
+      notifyMyImpact={state.values.notifyMyImpact}
+      handleInputChange={handleInputChange}
+    />,
     <SharePage />,
   ];
 
@@ -90,6 +95,7 @@ class App extends Component {
         firstName: '',
         lastName: '',
         email: '',
+        notifyAllocations: true,
       },
       blurred: {firstName: false, lastName: false, email: false},
     };

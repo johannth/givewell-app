@@ -1,0 +1,37 @@
+@import '../Constants.scss';
+
+.SuccessPage__header {
+  width: 100%;
+  font-size: 27pt;
+  color: $colorBlack;
+  text-align: center;
+  font-weight: $fontWeightNormal;
+  margin-top: 18px;
+  margin-bottom: 18px;
+}
+
+.SuccessPage__paragraph {
+  text-align: center;
+}
+
+.SuccessPage__list {
+  width: 100%;
+  margin: 0px;
+  list-style: none;
+  padding: 0px;
+}
+
+.SuccessPage__list__item {
+  margin-bottom: 5px;
+}
+
+.SuccessPage__checkbox {
+  border-radius: 0px;
+  width: 14px;
+  height: 14px;
+  margin-right: 5px;
+}
+
+#SuccessPage__optionalNotification {
+  margin-bottom: 30px;
+}
