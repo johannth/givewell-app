@@ -1,5 +1,11 @@
+import {sum} from './utils';
+import logoAMF from './logo-AMF.png';
+import logoSCI from './logo-SCI.png';
+
 const GIVEWELL_IMPACT = {
   'Against Malaria Foundation': {
+    description: 'Providing long-lasting insecticidal nets to populations in high risk of malaria',
+    logo: logoAMF,
     livesSavedPerDollarPerYear: 0.0003163024794,
     donationRatio: 0.75,
   },
@@ -8,6 +14,8 @@ const GIVEWELL_IMPACT = {
     donationRatio: 0,
   },
   'Schistosomiasis Control Initiative': {
+    description: 'Helping African countries treat schistosomiasis, a neglected tropical disease',
+    logo: logoSCI,
     livesSavedPerDollarPerYear: 0.0007285818717,
     donationRatio: 0.25,
   },
@@ -23,11 +31,6 @@ const GIVEWELL_IMPACT = {
     livesSavedPerDollarPerYear: 0.0003099860857,
     donationRatio: 0,
   },
-};
-
-const sum = list => {
-  const add = (x, y) => x + y;
-  return list.reduce(add, 0);
 };
 
 const mapCharities = f => {
@@ -53,6 +56,8 @@ export const calculateDonationAllocationPerRepeat = baseAmount => {
     const yourDonation = baseAmount * info.donationRatio;
     return {
       charityName,
+      charityDescription: info.description,
+      charityLogo: info.logo,
       donationRatio: info.donationRatio,
       yourDonation,
     };

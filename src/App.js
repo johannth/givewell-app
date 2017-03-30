@@ -36,6 +36,7 @@ const DonateFormPage = ({match, state, handleInputChange, handleOnBlur}) => {
     />,
     <DonationAllocationPage
       baseAmount={state.values.baseAmount}
+      supportGiveWell={state.values.supportGiveWell}
       handleInputChange={handleInputChange}
     />,
     <PersonalInfoPage
