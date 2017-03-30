@@ -4,7 +4,8 @@ import classNames from 'classnames';
 import creditcards from 'creditcards';
 
 import NextStepButton from '../NextStepButton';
-
+import {calculateMonthlyTotal} from '../charities';
+import {humanize} from '../utils';
 import './PaymentPage.css';
 
 const expirationIsValid = creditCardExpiration => {
@@ -21,6 +22,7 @@ const PaymentPage = (
   {
     nextStep,
     baseAmount,
+    supportGiveWell,
     creditCardName,
     creditCardNameBlurred,
     creditCardNumber,
@@ -45,14 +47,22 @@ const PaymentPage = (
     creditCardExpirationIsValid &&
     creditCardCVCIsValid;
 
+  const total = calculateMonthlyTotal(baseAmount, supportGiveWell);
+
   return (
-    <div>
-      <h2>Payment Method</h2>
+    <div className="PageWrapper">
+      <div className="PaymentPage__paragraph">
+        You will be charged $
+        <span className="bold">{humanize(total)}</span>
+        {' '}
+        on a monthly basis. You can cancel your donation at any time.
+      </div>
       <div>
         <input
           type="text"
           name="creditCardName"
           className={classNames({
+            Input: true,
             'Input--error': creditCardNameBlurred && !creditCardNameIsValid,
           })}
           value={creditCardName}
@@ -64,6 +74,7 @@ const PaymentPage = (
           type="tel"
           name="creditCardNumber"
           className={classNames({
+            Input: true,
             'Input--error': creditCardNumberBlurred && !creditCardNumberIsValid,
           })}
           value={creditCardNumber}
@@ -71,31 +82,40 @@ const PaymentPage = (
           onChange={handleInputChange}
           onBlur={handleOnBlur}
         />
-        <input
-          type="text"
-          name="creditCardExpiration"
-          className={classNames({
-            'Input--error': creditCardExpirationBlurred &&
-              !creditCardExpirationIsValid,
-          })}
-          value={creditCardExpiration}
-          placeholder="mm/yy"
-          onChange={handleInputChange}
-          onBlur={handleOnBlur}
-        />
-        <input
-          type="tel"
-          name="creditCardCVC"
-          className={classNames({
-            'Input--error': creditCardCVCBlurred && !creditCardCVCIsValid,
-          })}
-          value={creditCardCVC}
-          placeholder="cvc"
-          onChange={handleInputChange}
-          onBlur={handleOnBlur}
-        />
+        <div className="PaymentPage__expiration_cvc">
+          <input
+            id="PaymentPage__expiration"
+            type="text"
+            name="creditCardExpiration"
+            className={classNames({
+              Input: true,
+              'Input--error': creditCardExpirationBlurred &&
+                !creditCardExpirationIsValid,
+            })}
+            value={creditCardExpiration}
+            placeholder="mm/yy"
+            onChange={handleInputChange}
+            onBlur={handleOnBlur}
+          />
+          <input
+            id="PaymentPage__cvc"
+            type="tel"
+            name="creditCardCVC"
+            className={classNames({
+              Input: true,
+              'Input--error': creditCardCVCBlurred && !creditCardCVCIsValid,
+            })}
+            value={creditCardCVC}
+            placeholder="cvc"
+            onChange={handleInputChange}
+            onBlur={handleOnBlur}
+          />
+        </div>
       </div>
-      <div>
+      <NextStepButton to={nextStep} disabled={!isValid}>
+        Checkout
+      </NextStepButton>
+      <div className="PaymentPage__or">
         or
       </div>
       <div>
@@ -104,15 +124,7 @@ const PaymentPage = (
           alt="PayPal"
         />
       </div>
-      <div>
-        You will be charged $
-        {baseAmount}
-        {' '}
-        on a monthly basis. You can cancel your donation at any time.
-      </div>
-      <NextStepButton to={nextStep} disabled={!isValid}>
-        Checkout
-      </NextStepButton>
+
     </div>
   );
 };

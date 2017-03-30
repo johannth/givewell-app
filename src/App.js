@@ -10,7 +10,7 @@ import DonationAllocationPage from './steps/DonationAllocationPage';
 import PaymentPage from './steps/PaymentPage';
 import PersonalInfoPage from './steps/PersonalInfoPage';
 import SuccessPage from './steps/SuccessPage';
-import SharePage from './steps/SharePage';
+import SharePage from './SharePage';
 
 const Progress = ({step, totalSteps}) => {
   const percentageCompleted = step / totalSteps * 100;
@@ -31,10 +31,12 @@ const DonateFormPage = ({match, state, handleInputChange, handleOnBlur}) => {
   const steps = [
     <BaseAmountPage
       baseAmount={state.values.baseAmount}
+      supportGiveWell={state.values.supportGiveWell}
       handleInputChange={handleInputChange}
     />,
     <DonationAllocationPage
       baseAmount={state.values.baseAmount}
+      supportGiveWell={state.values.supportGiveWell}
       handleInputChange={handleInputChange}
     />,
     <PersonalInfoPage
@@ -49,6 +51,7 @@ const DonateFormPage = ({match, state, handleInputChange, handleOnBlur}) => {
     />,
     <PaymentPage
       baseAmount={state.values.baseAmount}
+      supportGiveWell={state.values.supportGiveWell}
       creditCardName={state.values.creditCardName}
       creditCardNameBlurred={state.blurred.creditCardName}
       creditCardNumber={state.values.creditCardNumber}
@@ -60,8 +63,12 @@ const DonateFormPage = ({match, state, handleInputChange, handleOnBlur}) => {
       handleInputChange={handleInputChange}
       handleOnBlur={handleOnBlur}
     />,
-    <SuccessPage />,
-    <SharePage />,
+    <SuccessPage
+      notifyAllocations={state.values.notifyAllocations}
+      notifyGiveWellMonthly={state.values.notifyGiveWellMonthly}
+      notifyMyImpact={state.values.notifyMyImpact}
+      handleInputChange={handleInputChange}
+    />,
   ];
 
   const step = parseInt(match.params.step, 10);
@@ -71,7 +78,9 @@ const DonateFormPage = ({match, state, handleInputChange, handleOnBlur}) => {
       <div className="Page">
         <Progress step={step} totalSteps={steps.length} />
         {React.cloneElement(steps[step - 1], {
-          nextStep: `/donate/step/${step + 1}`,
+          nextStep: step === steps.length
+            ? '/donate/success'
+            : `/donate/step/${step + 1}`,
         })}
       </div>
     </div>
@@ -88,6 +97,7 @@ class App extends Component {
         firstName: '',
         lastName: '',
         email: '',
+        notifyAllocations: true,
       },
       blurred: {firstName: false, lastName: false, email: false},
     };
@@ -148,6 +158,11 @@ class App extends Component {
           <Route
             path="/donate/step/:step"
             render={this.passState.bind(this, DonateFormPage)}
+          />
+          <Route
+            exact
+            path="/donate/success"
+            render={this.passState.bind(this, SharePage)}
           />
         </Switch>
       </Router>

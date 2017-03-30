@@ -1,0 +1,17 @@
+.PaymentPage__paragraph {
+  text-align: center;
+  margin-bottom: 20px; }
+
+.PaymentPage__expiration_cvc {
+  display: flex; }
+
+#PaymentPage__expiration {
+  width: 100%;
+  margin-right: 15px; }
+
+#PaymentPage__cvc {
+  width: 100%; }
+
+.PaymentPage__or {
+  margin-top: 15px;
+  margin-bottom: 15px; }
