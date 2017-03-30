@@ -51,6 +51,7 @@ const DonateFormPage = ({match, state, handleInputChange, handleOnBlur}) => {
     />,
     <PaymentPage
       baseAmount={state.values.baseAmount}
+      supportGiveWell={state.values.supportGiveWell}
       creditCardName={state.values.creditCardName}
       creditCardNameBlurred={state.blurred.creditCardName}
       creditCardNumber={state.values.creditCardNumber}

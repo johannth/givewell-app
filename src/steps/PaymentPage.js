@@ -4,7 +4,8 @@ import classNames from 'classnames';
 import creditcards from 'creditcards';
 
 import NextStepButton from '../NextStepButton';
-
+import {calculateMonthlyTotal} from '../charities';
+import {humanize} from '../utils';
 import './PaymentPage.css';
 
 const expirationIsValid = creditCardExpiration => {
@@ -21,6 +22,7 @@ const PaymentPage = (
   {
     nextStep,
     baseAmount,
+    supportGiveWell,
     creditCardName,
     creditCardNameBlurred,
     creditCardNumber,
@@ -45,11 +47,13 @@ const PaymentPage = (
     creditCardExpirationIsValid &&
     creditCardCVCIsValid;
 
+  const total = calculateMonthlyTotal(baseAmount, supportGiveWell);
+
   return (
     <div className="PageWrapper">
       <div className="PaymentPage__paragraph">
         You will be charged $
-        <span className="bold">{baseAmount}</span>
+        <span className="bold">{humanize(total)}</span>
         {' '}
         on a monthly basis. You can cancel your donation at any time.
       </div>

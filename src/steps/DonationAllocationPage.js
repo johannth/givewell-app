@@ -2,8 +2,11 @@ import React from 'react';
 
 import NextStepButton from '../NextStepButton';
 import './DonationAllocationPage.css';
-import {calculateDonationAllocationPerRepeat} from '../charities';
-import {sum} from '../utils';
+import {
+  calculateDonationAllocationPerRepeat,
+  calculateMonthlyTotal,
+} from '../charities';
+import {sum, humanize} from '../utils';
 
 const DonationAllocationPage = ({nextStep, baseAmount, supportGiveWell}) => {
   const donations = calculateDonationAllocationPerRepeat(baseAmount);
@@ -14,9 +17,9 @@ const DonationAllocationPage = ({nextStep, baseAmount, supportGiveWell}) => {
     });
   }
 
-  const total = sum(donations.map(d => d.yourDonation));
+  const total = calculateMonthlyTotal(baseAmount, supportGiveWell);
 
-  const amountAsStringIfAny = donation => donation || '--';
+  const amountAsStringIfAny = donation => humanize(donation) || '--';
 
   return (
     <div className="PageWrapper">

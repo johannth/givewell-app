@@ -87,3 +87,7 @@ export const calculateLivesSavedInYears = (
     }),
   );
 };
+
+export const calculateMonthlyTotal = (baseAmount, supportGiveWell) => {
+  return supportGiveWell ? baseAmount * 1.1 : baseAmount;
+};
