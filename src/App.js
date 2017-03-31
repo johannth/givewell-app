@@ -28,14 +28,16 @@ const Progress = ({step, totalSteps}) => {
 };
 
 const DonateFormPage = ({match, state, handleInputChange, handleOnBlur}) => {
+  const baseAmount = parseInt(state.values.baseAmount, 10);
+
   const steps = [
     <BaseAmountPage
-      baseAmount={state.values.baseAmount}
+      baseAmount={baseAmount}
       supportGiveWell={state.values.supportGiveWell}
       handleInputChange={handleInputChange}
     />,
     <DonationAllocationPage
-      baseAmount={state.values.baseAmount}
+      baseAmount={baseAmount}
       supportGiveWell={state.values.supportGiveWell}
       handleInputChange={handleInputChange}
     />,
@@ -50,7 +52,7 @@ const DonateFormPage = ({match, state, handleInputChange, handleOnBlur}) => {
       handleOnBlur={handleOnBlur}
     />,
     <PaymentPage
-      baseAmount={state.values.baseAmount}
+      baseAmount={baseAmount}
       supportGiveWell={state.values.supportGiveWell}
       creditCardName={state.values.creditCardName}
       creditCardNameBlurred={state.blurred.creditCardName}
@@ -94,6 +96,7 @@ class App extends Component {
     this.state = {
       values: {
         baseAmount: 0,
+        supportGiveWell: false,
         firstName: '',
         lastName: '',
         email: '',
