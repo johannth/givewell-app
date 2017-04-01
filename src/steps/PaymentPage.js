@@ -52,8 +52,8 @@ const PaymentPage = (
   return (
     <div className="PageWrapper">
       <div className="PaymentPage__paragraph">
-        You will be charged $
-        <span className="bold">{humanize(total)}</span>
+        You will be charged
+        <span className="bold"> ${humanize(total)}</span>
         {' '}
         on a monthly basis. You can cancel your donation at any time.
       </div>

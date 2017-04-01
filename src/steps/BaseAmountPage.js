@@ -26,7 +26,7 @@ const BaseAmountPage = (
         <span className="bold">how many lives</span> each dollar will save.
       </p>
       <p className="BaseAmountPage__paragraph">
-        How much do you want to donate monthly?
+        How much do you want <br/>to donate monthly?
       </p>
       <div className="BaseAmountPage__inputWrapper">
         $

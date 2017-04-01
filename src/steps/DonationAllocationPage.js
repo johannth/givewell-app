@@ -25,10 +25,10 @@ const DonationAllocationPage = ({nextStep, baseAmount, supportGiveWell}) => {
     <div className="PageWrapper">
       <div>
         <p className="DonationAllocationPage__paragraph">
-          We have ranked our top charities based on the value of filling their remaining funding gaps.
+          We have ranked our top charities<br/> based on the value of filling their<br/> remaining funding gaps.
         </p>
         <p className="DonationAllocationPage__paragraph">
-          Currently this split is our recommended allocation to get the
+          Currently this split is our<br/> recommended allocation to <br/>get the
           {' '}
           <span className="bold">highest impact.</span>
         </p>
@@ -66,8 +66,13 @@ const DonationAllocationPage = ({nextStep, baseAmount, supportGiveWell}) => {
               );
             })}
             <tr>
-              <td />
-              <td />
+              <td className="DonationAllocationPage__charity__logo">
+              </td>
+              <td className="DonationAllocationPage__charity__info">
+                    <h3 className="DonationAllocationPage__charity__name">
+                      Total monthly donation
+                    </h3>
+              </td>
               <td className="DonationAllocationPage__charity__amount">
                 ${amountAsStringIfAny(total)}
               </td>
