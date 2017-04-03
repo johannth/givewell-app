@@ -47,14 +47,16 @@ const BaseAmountPage = (
         <br />in the next {NUMBER_OF_YEARS} years
       </div>
       <div className="BaseAmountPage__supportGiveWell">
-        <label>
-          <input
-            name="supportGiveWell"
-            type="checkbox"
-            checked={supportGiveWell}
-            onChange={handleInputChange}
-            className="BaseAmountPage__supportGiveWell__checkbox"
-          />
+
+        <input
+          id="supportGiveWell"
+          name="supportGiveWell"
+          type="checkbox"
+          checked={supportGiveWell}
+          onChange={handleInputChange}
+          className="BaseAmountPage__supportGiveWell__checkbox"
+        />
+        <label htmlFor="supportGiveWell">
           Add 10% to help fund {"GiveWell's"} operations
         </label>
       </div>
