@@ -6,27 +6,20 @@ import './NextStepButton.css';
 
 const NextStepButton = ({to, disabled, children}) => {
   return (
-    <div
+    <Link
       className={classNames({
         NextStepButton: true,
         'NextStepButton--disabled': disabled,
       })}
+      to={to}
+      onClick={e => {
+        if (disabled) {
+          e.preventDefault();
+        }
+      }}
     >
-      <Link
-        className={classNames({
-          NextStepButton__link: true,
-          'NextStepButton__link--disabled': disabled,
-        })}
-        to={to}
-        onClick={e => {
-          if (disabled) {
-            e.preventDefault();
-          }
-        }}
-      >
-        {children}
-      </Link>
-    </div>
+      {children}
+    </Link>
   );
 };
 

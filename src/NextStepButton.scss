@@ -1,6 +1,11 @@
 @import 'Constants.scss';
 
-.NextStepButton a {
+.NextStepButton {
+  font-family: $fontFamily;
+  color: $colorWhite;
+  text-decoration: none;
+  text-align: center;
+  align-items: center;
   color: $colorWhite;
   display: flex;
   flex-direction: row;
@@ -14,17 +19,8 @@
   letter-spacing: 1px;
 }
 
-.NextStepButton__link {
-  font-family: $fontFamily;
-  color: $colorWhite;
-  text-decoration: none;
-}
-
 .NextStepButton--disabled {
   background-color: $colorLightGray;
-}
-
-.NextStepButton__link--disabled {
   color: $colorBlack;
   text-decoration: none;
 }

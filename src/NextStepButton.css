@@ -1,4 +1,9 @@
-.NextStepButton a {
+.NextStepButton {
+  font-family: "Lato";
+  color: #FFFFFF;
+  text-decoration: none;
+  text-align: center;
+  align-items: center;
   color: #FFFFFF;
   display: flex;
   flex-direction: row;
@@ -11,14 +16,7 @@
   font-size: 16pt;
   letter-spacing: 1px; }
 
-.NextStepButton__link {
-  font-family: "Lato";
-  color: #FFFFFF;
-  text-decoration: none; }
-
 .NextStepButton--disabled {
-  background-color: #F1F1F1; }
-
-.NextStepButton__link--disabled {
+  background-color: #F1F1F1;
   color: #424242;
   text-decoration: none; }
