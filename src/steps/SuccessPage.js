@@ -22,13 +22,14 @@ const SuccessPage = (
         <li className="SuccessPage__list__item">
           <input
             type="checkbox"
+            id="notifyAllocations"
             name="notifyAllocations"
             checked={notifyAllocations}
             onChange={handleInputChange}
             className="SuccessPage__checkbox"
           />
-          <label>
-            Notify me when my donations change  according to the recommended allocations.
+          <label htmlFor="notifyAllocations">
+            Notify me when my donations change  according to the recommended allocations
           </label>
         </li>
       </ul>
@@ -41,24 +42,31 @@ const SuccessPage = (
       </p>
       <ul id="SuccessPage__optionalNotification" className="SuccessPage__list">
         <li className="SuccessPage__list__item">
+
           <input
             type="checkbox"
+            id="notifyGiveWellMonthly"
             name="notifyGiveWellMonthly"
             checked={notifyGiveWellMonthly}
             onChange={handleInputChange}
             className="SuccessPage__checkbox"
           />
-          <label>Receive monthly GiveWell newsletter</label>
+          <label htmlFor="notifyGiveWellMonthly">
+            Receive monthly GiveWell newsletter
+          </label>
         </li>
         <li className="SuccessPage__list__item">
           <input
             type="checkbox"
+            id="notifyMyImpact"
             name="notifyMyImpact"
             checked={notifyMyImpact}
             onChange={handleInputChange}
             className="SuccessPage__checkbox"
           />
-          <label>Receive periodice email on your impact</label>
+          <label htmlFor="notifyMyImpact">
+            Receive periodic emails on your impact
+          </label>
         </li>
       </ul>
       <NextStepButton to={nextStep}>

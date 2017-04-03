@@ -17,7 +17,6 @@ const BaseAmountPage = (
       DEFAULT_DONATION_REPEAT,
     ),
   );
-  console.log(supportGiveWell);
   return (
     <div className="PageWrapper">
       <p className="BaseAmountPage__paragraph">
@@ -26,7 +25,7 @@ const BaseAmountPage = (
         <span className="bold">how many lives</span> each dollar will save.
       </p>
       <p className="BaseAmountPage__paragraph">
-        How much do you want to donate monthly?
+        How much do you want <br />to donate monthly?
       </p>
       <div className="BaseAmountPage__inputWrapper">
         $
@@ -48,14 +47,16 @@ const BaseAmountPage = (
         <br />in the next {NUMBER_OF_YEARS} years
       </div>
       <div className="BaseAmountPage__supportGiveWell">
+
         <input
+          id="supportGiveWell"
           name="supportGiveWell"
           type="checkbox"
           checked={supportGiveWell}
           onChange={handleInputChange}
           className="BaseAmountPage__supportGiveWell__checkbox"
         />
-        <label>
+        <label htmlFor="supportGiveWell">
           Add 10% to help fund {"GiveWell's"} operations
         </label>
       </div>
